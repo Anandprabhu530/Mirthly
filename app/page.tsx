@@ -1,18 +1,21 @@
 'use client'
 
+import { analyze_data } from "@/utils/ai";
 import { useState } from "react";
 
 export default function Home() {
   const [selectedValue, setSelctedValue] = useState("");
+  const [data, setData] = useState();
 
   const handleChange = (event) => {
     console.log(event.target.value)
     setSelctedValue(event.target.value)
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    console.log(selectedValue)
+    const res = await analyze_data("I like to do math but I dont like any tech related jobs");
+    console.log(res)
   }
   
   return (
