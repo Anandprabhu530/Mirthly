@@ -1,20 +1,18 @@
 'use client'
 
 import { analyze_data } from "@/utils/ai";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 export default function Home() {
   const [selectedValue, setSelctedValue] = useState("");
-  const [data, setData] = useState();
 
-  const handleChange = (event) => {
-    console.log(event.target.value)
+  const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setSelctedValue(event.target.value)
   }
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async(event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    const res = await analyze_data("I like to do math but I dont like any tech related jobs");
+    const res = await analyze_data(selectedValue);
     console.log(res)
   }
   
@@ -25,7 +23,8 @@ export default function Home() {
       </div>
       <div className="p-10 flex border-2 border-white h-full justify-center">
         <form className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2 ">
+          <textarea className="w-[700px] h-[400px] bg-transparent outline-none resize-none border-2 border-white rounded-lg p-4 text-xl" onChange={handleChange}/>
+          {/* <div className="flex flex-col gap-2 ">
             <p className="text-xl">Preffered Work Environment :</p>
             <select onChange={handleChange} className="outline-none bg-transparent border border-white rounded-md p-2">
             <option className="bg-transparent option-transparent text-black" value="Fast-paced">Fast-paced</option>
@@ -66,7 +65,7 @@ export default function Home() {
             <option className="bg-transparent option-transparent text-black" value="mercedes">Helping people and making a difference in their lives
             </option>
             </select>
-          </div>
+          </div> */}
           <button className="px-4 py-2 bg-blue-400" onClick={handleSubmit}>Submit</button>
         </form>
       </div>

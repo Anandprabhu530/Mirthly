@@ -1,4 +1,3 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai"
 import { StructuredOutputParser } from "langchain/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
@@ -19,7 +18,7 @@ export const analyze_data = async (input:string) => {
         PromptTemplate.fromTemplate(
             "Answer the users question as best as possible.\n{format_instructions}\n{question}"
         ),
-        new ChatGoogleGenerativeAI({ apiKey:process.env.GOOGLE_API_KEY,modelName: "gemini-pro", maxOutputTokens: 2048 }),
+        new ChatGoogleGenerativeAI({ apiKey:process.env.NEXT_PUBLIC_GOOGLE_API_KEY,modelName: "gemini-pro", maxOutputTokens: 2048 }),
         parser,
     ]);
     const response = await chain.invoke({
