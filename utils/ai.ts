@@ -4,7 +4,6 @@ import { PromptTemplate } from "@langchain/core/prompts";
 import { RunnableSequence } from "@langchain/core/runnables";
 import { z } from "zod"
 
-
 const parser = StructuredOutputParser.fromZodSchema(
     z.object({
         recommendations: z.array(z.string()).describe("Give the career that can be suitable for the given answers only"),
