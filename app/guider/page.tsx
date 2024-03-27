@@ -20,41 +20,20 @@ export default function Home() {
   };
 
   return (
-    <main className="p-10 w-full ">
-      <div className="flex">
-        <div className="basis-2/3">
-          <div className="flex justify-center text-3xl ">
-            <h1>Your Carrer Guidance Here</h1>d
+    <main className="p-10 w-full border-2 border-white h-screen">
+      <div className="flex h-full gap-10">
+        <div className="border-2 bg-[#373737] rounded-xl border-red-500 flex flex-col basis-2/3">
+          <div className="mx-8 py-6 w-11/12 h-fit text-xl font-semibold  border-b-[2px] border-[#c4c2c2]">
+            Your Carrier Starts Here
           </div>
-          <div className="p-10 flex h-full justify-center border-2 border-white">
-            <form className="flex flex-col gap-4 w-full">
-              <textarea
-                className="w-full h-[300px] bg-transparent outline-none resize-none border-2 border-white rounded-lg p-4  text-xl"
-                onChange={handleChange}
-              />
-              <button
-                className="px-4 py-2 bg-[#0170f1] rounded-xl"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
-            </form>
-          </div>
+          <div className="px-8 pt-4 pb-2">Work Environment</div>
+          <select className="mx-8 p-1 text-white outline-none bg-transparent border border-white rounded-lg">
+            <option>Hello</option>
+          </select>
         </div>
-        {data && (
-          <div className="basis-1/3">
-            <div className="flex flex-col items-center">
-              Recommendations :
-              {data.recommendations.map((solodata, index) => {
-                return (
-                  <div key={solodata}>
-                    {index + 1}. {solodata}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        <div className="border-2 border-red-500 flex justify-center basis-1/3">
+          Section 2
+        </div>
       </div>
     </main>
   );
