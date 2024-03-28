@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { analyze_data } from "@/utils/ai";
 import { SetStateAction, useState } from "react";
 
@@ -27,9 +28,7 @@ export default function Home() {
             Your Carrier Starts Here
           </div>
           <div className="px-8 pt-4 pb-2">Work Environment</div>
-          <select className="mx-8 p-1 text-white outline-none bg-transparent border border-white rounded-lg">
-            <option>Hello</option>
-          </select>
+          <Button>Submit</Button>
         </div>
         <div className="border-2 border-red-500 flex justify-center basis-1/3">
           Section 2
