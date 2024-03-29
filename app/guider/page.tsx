@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ComboboxForm } from "../../components/ComboboxForm";
 import { analyze_data } from "@/utils/ai";
 import { SetStateAction, useState } from "react";
+import { DialogDemo } from "../../components/DialogDemo";
 
 export default function Home() {
   // const [selectedValue, setSelctedValue] = useState("");
@@ -29,13 +30,7 @@ export default function Home() {
             Your Carrier Starts Here
           </div>
           <div className="px-8 pt-4 pb-2">Work Environment</div>
-          <Button
-            onClick={() => {
-              console.log("clicked");
-            }}
-          >
-            Click Me
-          </Button>
+          <DialogDemo>Click Here</DialogDemo>
         </div>
         <div className="border-2 border-red-500 flex justify-center basis-1/3">
           Section 2
