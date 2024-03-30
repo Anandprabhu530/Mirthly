@@ -72,7 +72,7 @@ export function ComboboxForm() {
           name="language"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Language</FormLabel>
+              <FormLabel>Preffered Work Environment</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -121,14 +121,10 @@ export function ComboboxForm() {
                   </Command>
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                This is the language that will be used in the dashboard.
-              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );
