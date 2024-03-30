@@ -8,15 +8,17 @@ const parser = StructuredOutputParser.fromZodSchema(
   z.object({
     recommendations: z
       .array(z.string())
-      .describe(
-        "Give the career that can be suitable for the given answers only"
-      ),
+      .describe("career that are suitable for the given questions only"),
     specific: z
       .string()
-      .describe("Give the one carrer path that is suitable for the person"),
+      .describe(
+        "Consider the user words and give the best job that aligns with his words"
+      ),
     preffered: z
       .string()
-      .describe("Give the top trending jo in his requirement"),
+      .describe(
+        "Regardless of the user interest give the most trending job in the domain the user have selected"
+      ),
   })
 );
 
