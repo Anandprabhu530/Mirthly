@@ -1,50 +1,40 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, ChevronsUpDown } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
-import { CommandList } from "cmdk";
-
-const languages = [
-  { label: "High School", value: "hs" },
-  { label: "Bachelor's Degree", value: "bs" },
-  { label: "Master's Degree", value: "ms" },
-  { label: "Doctoral Degree", value: "dr" },
-] as const;
 
 const FormSchema = z.object({
-  language: z.string({
-    required_error: "Please select an Environment.",
+  Personality: z.string({
+    required_error: "Please select a Personality.",
+  }),
+  Interest: z.string({
+    required_error: "Please select a Interest.",
+  }),
+  WorkEnvironment: z.string({
+    required_error: "Please select a Work Environment.",
   }),
 });
 
-export function ComboboxForm() {
+export function ComboboxAcd() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -62,67 +52,122 @@ export function ComboboxForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
         <FormField
           control={form.control}
-          name="language"
+          name="Personality"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Preffered Work Environment</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
+            <div>
+              <FormItem>
+                <FormLabel>Personality</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-[200px] justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? languages.find(
-                            (language) => language.value === field.value
-                          )?.label
-                        : "Select Environment"}
-                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a Personality " />
+                    </SelectTrigger>
                   </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search Environment..." />
-                    <CommandList>
-                      <CommandEmpty>Not found.</CommandEmpty>
-                      <CommandGroup>
-                        {languages.map((language) => (
-                          <CommandItem
-                            value={language.label}
-                            key={language.value}
-                            onSelect={() => {
-                              form.setValue("language", language.value);
-                            }}
-                          >
-                            <Check
-                              className={cn(
-                                "mr-2 h-4 w-4",
-                                language.value === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                            {language.label}
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormMessage />
-            </FormItem>
+                  <SelectContent>
+                    <SelectItem value="Introverted">Introverted</SelectItem>
+                    <SelectItem value="Extroverted">Extroverted</SelectItem>
+                    <SelectItem value="Analytical">Analytical</SelectItem>
+                    <SelectItem value="Detail-Oriented">
+                      Detail-Oriented
+                    </SelectItem>
+                    <SelectItem value="Team-Player">Team Player</SelectItem>
+                    <SelectItem value="Independent">Independent</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+              <FormItem className="pt-6">
+                <FormLabel>Interests</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a Interest " />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Arts & Creativity">
+                      Arts & Creativity
+                    </SelectItem>
+                    <SelectItem value="Business & Finance">
+                      Business & Finance
+                    </SelectItem>
+                    <SelectItem value="Outdoors & Adventure">
+                      Outdoors & Adventure
+                    </SelectItem>
+                    <SelectItem value="Science & Technology">
+                      Science & Technology
+                    </SelectItem>
+                    <SelectItem value="Fitness & Wellness">
+                      Fitness & Wellness
+                    </SelectItem>
+                    <SelectItem value="Gaming & Entertainment">
+                      Gaming & Entertainment
+                    </SelectItem>
+                    <SelectItem value="History & Culture">
+                      History & Culture
+                    </SelectItem>
+                    <SelectItem value="Social Justice & Advocacy">
+                      Social Justice & Advocacy
+                    </SelectItem>
+                    <SelectItem value="Learning & Self-Improvement">
+                      Learning & Self-Improvement
+                    </SelectItem>
+                    <SelectItem value="Making & Fixing Things">
+                      Making & Fixing Things
+                    </SelectItem>
+                    <SelectItem value="Cooking & Food">
+                      Cooking & Food
+                    </SelectItem>
+                    <SelectItem value="Fashion & Beauty">
+                      Fashion & Beauty
+                    </SelectItem>
+                    <SelectItem value="Animals & Pets">
+                      Animals & Pets
+                    </SelectItem>
+                    <SelectItem value="Music & Performing Arts">
+                      Music & Performing Arts
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+              <FormItem className="pt-6">
+                <FormLabel>Work Environment</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your prefered work Environment " />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Fast-paced">Fast-paced</SelectItem>
+                    <SelectItem value="Steady-paced">Steady-paced</SelectItem>
+                    <SelectItem value="Analytical">Analytical</SelectItem>
+                    <SelectItem value="Detail-Oriented">
+                      Detail-Oriented
+                    </SelectItem>
+                    <SelectItem value="Team-Player">Team Player</SelectItem>
+                    <SelectItem value="Independent">Independent</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            </div>
           )}
         />
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );

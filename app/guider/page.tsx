@@ -1,9 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { ComboboxForm } from "../../components/ComboboxEnv";
-import { ComboboxInt } from "../../components/ComboboxInt";
-import { ComboboxPer } from "../../components/ComboboxPer";
+// import { ComboboxForm } from "../../components/ComboboxEnv";
+// import { ComboboxInt } from "../../components/ComboboxInt";
+// import { ComboboxPer } from "../../components/ComboboxPer";
+import { ComboboxAcd } from "@/components/ComboboxAcd";
 
 export default function Home() {
   // const [selectedValue, setSelctedValue] = useState("");
@@ -29,10 +30,13 @@ export default function Home() {
             Your Carrier Starts Here
           </div>
           {/* <div className="px-8 pt-4 pb-2">Work Environment</div> */}
-          <div className="p-8 grid grid-cols-3">
-            <ComboboxForm>Click Here</ComboboxForm>
+          <div className="p-8">
+            {/* <ComboboxForm>Click Here</ComboboxForm>
             <ComboboxInt>Click Here</ComboboxInt>
-            <ComboboxPer>Click Here</ComboboxPer>
+            <ComboboxPer>Click Here</ComboboxPer> */}
+            <ComboboxAcd>Click Here</ComboboxAcd>
+
+            {/* <ComboboxAcd>Clcike Here</ComboboxAcd> */}
           </div>
           <div className="w-full flex justify-center pt-10">
             <Button
