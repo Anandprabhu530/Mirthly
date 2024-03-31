@@ -29,26 +29,33 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { toast } from "@/components/ui/use-toast";
+import { CommandList } from "cmdk";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const languages = [
-  { label: "English", value: "en" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Spanish", value: "es" },
-  { label: "Portuguese", value: "pt" },
-  { label: "Russian", value: "ru" },
-  { label: "Japanese", value: "ja" },
-  { label: "Korean", value: "ko" },
-  { label: "Chinese", value: "zh" },
+  { label: "Arts & Creativity", value: "ac" },
+  { label: "Business & Finance", value: "bf" },
+  { label: "Outdoors & Adventure", value: "oa" },
+  { label: "Science & Technology", value: "st" },
+  { label: "Fitness & Wellness", value: "fw" },
+  { label: "Gaming & Entertainment", value: "ge" },
+  { label: "History & Culture", value: "hc" },
+  { label: "Social Justice & Advocacy", value: "sa" },
+  { label: "Learning & Self-Improvement", value: "li" },
+  { label: "Making & Fixing Things", value: "mt" },
+  { label: "Cooking & Food", value: "cf" },
+  { label: "Fashion & Beauty", value: "fb" },
+  { label: "Animals & Pets", value: "ap" },
+  { label: "Music & Performing Arts", value: "ma" },
 ] as const;
 
 const FormSchema = z.object({
   language: z.string({
-    required_error: "Please select a language.",
+    required_error: "Please select a Interest.",
   }),
 });
 
-export function ComboboxForm() {
+export function ComboboxInt() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -72,7 +79,7 @@ export function ComboboxForm() {
           name="language"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Preffered Work Environment</FormLabel>
+              <FormLabel>Interests</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -88,36 +95,40 @@ export function ComboboxForm() {
                         ? languages.find(
                             (language) => language.value === field.value
                           )?.label
-                        : "Select language"}
+                        : "Select Interests"}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="w-[200px] p-0">
                   <Command>
-                    <CommandInput placeholder="Search language..." />
-                    <CommandEmpty>No language found.</CommandEmpty>
-                    <CommandGroup>
-                      {languages.map((language) => (
-                        <CommandItem
-                          value={language.label}
-                          key={language.value}
-                          onSelect={() => {
-                            form.setValue("language", language.value);
-                          }}
-                        >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              language.value === field.value
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                          {language.label}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
+                    <CommandInput placeholder="Search Interest..." />
+                    <CommandList>
+                      <CommandEmpty>Not found.</CommandEmpty>
+                      <CommandGroup>
+                        <ScrollArea className="h-[300px] w-[200px]">
+                          {languages.map((language) => (
+                            <CommandItem
+                              value={language.label}
+                              key={language.value}
+                              onSelect={() => {
+                                form.setValue("language", language.value);
+                              }}
+                            >
+                              <Check
+                                className={cn(
+                                  "mr-2 h-4 w-4",
+                                  language.value === field.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                              {language.label}
+                            </CommandItem>
+                          ))}
+                        </ScrollArea>
+                      </CommandGroup>
+                    </CommandList>
                   </Command>
                 </PopoverContent>
               </Popover>
