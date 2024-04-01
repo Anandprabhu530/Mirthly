@@ -21,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
+import { analyze_data } from "@/utils/ai";
 
 const FormSchema = z.object({
   Personality: z.string({
@@ -39,20 +40,14 @@ export function ComboboxAcd() {
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    console.log(data);
+    console.log(await analyze_data(data));
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-2">
         <FormField
           control={form.control}
           name="Personality"
@@ -82,7 +77,15 @@ export function ComboboxAcd() {
                 </Select>
                 <FormMessage />
               </FormItem>
-              <FormItem className="pt-6">
+            </div>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="Interest"
+          render={({ field }) => (
+            <div>
+              <FormItem className="pt-4">
                 <FormLabel>Interests</FormLabel>
                 <Select
                   onValueChange={field.onChange}
@@ -140,7 +143,15 @@ export function ComboboxAcd() {
                 </Select>
                 <FormMessage />
               </FormItem>
-              <FormItem className="pt-6">
+            </div>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="WorkEnvironment"
+          render={({ field }) => (
+            <div>
+              <FormItem className="pt-4">
                 <FormLabel>Work Environment</FormLabel>
                 <Select
                   onValueChange={field.onChange}
@@ -154,12 +165,7 @@ export function ComboboxAcd() {
                   <SelectContent>
                     <SelectItem value="Fast-paced">Fast-paced</SelectItem>
                     <SelectItem value="Steady-paced">Steady-paced</SelectItem>
-                    <SelectItem value="Analytical">Analytical</SelectItem>
-                    <SelectItem value="Detail-Oriented">
-                      Detail-Oriented
-                    </SelectItem>
-                    <SelectItem value="Team-Player">Team Player</SelectItem>
-                    <SelectItem value="Independent">Independent</SelectItem>
+                    <SelectItem value="Flexible">Flexible</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />

@@ -1,27 +1,9 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-// import { ComboboxForm } from "../../components/ComboboxEnv";
-// import { ComboboxInt } from "../../components/ComboboxInt";
-// import { ComboboxPer } from "../../components/ComboboxPer";
 import { ComboboxAcd } from "@/components/ComboboxAcd";
+import { analyze_data } from "@/utils/ai";
+import { useState } from "react";
 
 export default function Home() {
-  // const [selectedValue, setSelctedValue] = useState("");
-  // const [data, setData] = useState();
-
-  // const handleChange = (event: {
-  //   target: { value: SetStateAction<string> };
-  // }) => {
-  //   setSelctedValue(event.target.value);
-  // };
-
-  // const handleSubmit = async (event: { preventDefault: () => void }) => {
-  //   event.preventDefault();
-  //   const res = await analyze_data(selectedValue);
-  //   setData(res);
-  // };
-
   return (
     <main className="p-10 w-full border-2 border-white h-screen">
       <div className="flex h-full gap-6">
@@ -31,21 +13,7 @@ export default function Home() {
           </div>
           {/* <div className="px-8 pt-4 pb-2">Work Environment</div> */}
           <div className="p-8">
-            {/* <ComboboxForm>Click Here</ComboboxForm>
-            <ComboboxInt>Click Here</ComboboxInt>
-            <ComboboxPer>Click Here</ComboboxPer> */}
             <ComboboxAcd>Click Here</ComboboxAcd>
-
-            {/* <ComboboxAcd>Clcike Here</ComboboxAcd> */}
-          </div>
-          <div className="w-full flex justify-center pt-10">
-            <Button
-              onClick={() => {
-                console.log("Clciked");
-              }}
-            >
-              Click Me
-            </Button>
           </div>
         </div>
         <div></div>
