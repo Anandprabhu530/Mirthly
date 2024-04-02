@@ -1,24 +1,47 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
 import { ComboboxAcd } from "@/components/ComboboxAcd";
-import { analyze_data } from "@/utils/ai";
 import { useState } from "react";
 
 export default function Home() {
+  const [data, setData] = useState({
+    preffered: "Hello",
+    specific: "Ses",
+    recommendations: ["one", "two", "three "],
+  });
   return (
     <main className="p-10 w-full border-2 border-white h-screen">
       <div className="flex h-full gap-6">
-        <div className="border-2 rounded-xl border-red-500 flex flex-col basis-2/3">
+        <div className="border-2 rounded-xl border-red-500 flex flex-col basis-1/2">
           <div className="mx-8 py-6 w-11/12 h-fit text-xl font-semibold  border-b-[2px] border-[#c4c2c2]">
             Your Carrier Starts Here
           </div>
           {/* <div className="px-8 pt-4 pb-2">Work Environment</div> */}
           <div className="p-8">
-            <ComboboxAcd>Click Here</ComboboxAcd>
+            <ComboboxAcd setData={setData} />
           </div>
         </div>
         <div></div>
-        <div className="border-2 border-red-500 flex basis-1/3 rounded-xl">
-          <div className="p-6">Hello World</div>
+        <div className="border-2 border-red-500 flex basis-1/2 rounded-xl">
+          {data && (
+            <div className="p-6 w-full">
+              <div>Recommended Jobs : </div>
+              <div className="grid grid-cols-2 gap-6 w-full">
+                {data.recommendations.map((solodata, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="border-2 border-black rounded-md h-[100px]"
+                    >
+                      {index + 1}.{solodata}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="pt-6">Preffered job : {data.preffered}</div>
+              <div className="pt-6">Specific job : {data.specific}</div>
+            </div>
+          )}
         </div>
       </div>
     </main>

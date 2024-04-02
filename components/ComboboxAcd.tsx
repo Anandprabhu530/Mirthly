@@ -35,7 +35,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function ComboboxAcd() {
+export function ComboboxAcd({ setData }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -43,6 +43,7 @@ export function ComboboxAcd() {
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     console.log(data);
     console.log(await analyze_data(data));
+    setData(data);
   };
 
   return (
