@@ -4,11 +4,7 @@ import { ComboboxAcd } from "@/components/ComboboxAcd";
 import { useState } from "react";
 
 export default function Home() {
-  const [data, setData] = useState({
-    preffered: "Hello",
-    specific: "Ses",
-    recommendations: ["one", "two", "three "],
-  });
+  const [data, setData] = useState();
   return (
     <main className="p-10 w-full border-2 border-white h-screen">
       <div className="flex h-full gap-6">
@@ -23,7 +19,7 @@ export default function Home() {
         </div>
         <div></div>
         <div className="border-2 border-red-500 flex basis-1/2 rounded-xl">
-          {data && (
+          {data ? (
             <div className="p-6 w-full">
               <div>Recommended Jobs : </div>
               <div className="grid grid-cols-2 gap-6 w-full">
@@ -31,15 +27,19 @@ export default function Home() {
                   return (
                     <div
                       key={index}
-                      className="border-2 border-black rounded-md h-[100px]"
+                      className="border-2 border-black rounded-md h-[100px] flex justify-center items-center"
                     >
-                      {index + 1}.{solodata}
+                      {solodata.jobs}
                     </div>
                   );
                 })}
               </div>
               <div className="pt-6">Preffered job : {data.preffered}</div>
               <div className="pt-6">Specific job : {data.specific}</div>
+            </div>
+          ) : (
+            <div className="p-8 text-xl font-medium">
+              Fill the form and get a step closer to choosing your carrer
             </div>
           )}
         </div>
