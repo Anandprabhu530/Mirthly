@@ -1,6 +1,7 @@
 "use client";
 
 import { ComboboxAcd } from "@/components/ComboboxAcd";
+import { Dialog } from "@/components/ui/dialog";
 import { useState } from "react";
 
 interface solodata_type {
@@ -16,6 +17,10 @@ export default function Home() {
     preffered: "",
   });
   const [loading, setLoading] = useState(false);
+
+  const handlesubmit = () => {
+    return <Dialog />;
+  };
   return (
     <main className="p-10 w-full border-2 border-white h-screen">
       <div className="flex h-full gap-6">
@@ -37,8 +42,9 @@ export default function Home() {
                   (solodata: solodata_type, index: number) => {
                     return (
                       <div
+                        onClick={handlesubmit}
                         key={index}
-                        className="border-2 border-black rounded-md h-[100px] flex justify-center items-center relative"
+                        className="border-2 border-black font-semibold cursor-pointer rounded-md h-[100px] flex justify-center items-center relative"
                       >
                         {solodata.jobs}
                         <div className="absolute top-0 right-0 p-2">
