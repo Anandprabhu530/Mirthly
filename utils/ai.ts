@@ -17,8 +17,15 @@ const parser = StructuredOutputParser.fromZodSchema(
           .string()
           .describe("career that are suitable for the given questions only"),
         difficulty_score: z
-          .number()
-          .describe("Give a score out of 10 how difficult is the job"),
+          .string()
+          .describe(
+            "Give how difficult is the job. Easy or Medium or Hard. Strictly follow the case sensitivity like the given options"
+          ),
+        description: z
+          .string()
+          .describe(
+            "Give a short description about the job. What one do in this job on a daily basis"
+          ),
       })
     ),
     specific: z
