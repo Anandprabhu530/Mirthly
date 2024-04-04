@@ -1,13 +1,15 @@
 "use client";
 
 import { ComboboxAcd } from "@/components/ComboboxAcd";
-import { Dialog } from "@/components/ui/dialog";
+import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 
 interface solodata_type {
   jobs: string;
   difficulty_score: string;
   description: string;
+  steps: string;
+  tasks: string;
 }
 
 export default function Home() {
@@ -17,9 +19,10 @@ export default function Home() {
     preffered: "",
   });
   const [loading, setLoading] = useState(false);
+  const [toggle, setToggle] = useState(false);
 
   const handlesubmit = () => {
-    return <Dialog />;
+    setToggle(true);
   };
   return (
     <main className="p-10 w-full border-2 border-white h-screen">
@@ -32,7 +35,6 @@ export default function Home() {
             <ComboboxAcd setData={setData} setLoading={setLoading} />
           </div>
         </div>
-        <div></div>
         <div className="border-2 border-red-500 flex basis-1/2 rounded-xl">
           {data.recommendations.length !== 0 ? (
             <div className="p-6 w-full">
@@ -41,34 +43,44 @@ export default function Home() {
                 {data.recommendations.map(
                   (solodata: solodata_type, index: number) => {
                     return (
-                      <div
-                        onClick={handlesubmit}
-                        key={index}
-                        className="border-2 border-black font-semibold cursor-pointer rounded-md h-[100px] flex justify-center items-center relative"
-                      >
-                        {solodata.jobs}
-                        <div className="absolute top-0 right-0 p-2">
-                          {solodata.difficulty_score.toLowerCase() ===
-                          "hard" ? (
-                            <div className="text-red-500 font-semibold">
-                              Hard
-                            </div>
-                          ) : solodata.difficulty_score.toLowerCase() ===
-                            "medium" ? (
-                            <div className="text-yellow-400 font-semibold">
-                              Medium
-                            </div>
-                          ) : (
-                            <div className="text-green-400 font-semibold">
-                              Easy
-                            </div>
-                          )}
-                        </div>
-                      </div>
+                      <Dialog.Root key={index}>
+                        <Dialog.Trigger
+                          onClick={handlesubmit}
+                          className="border-2 border-black font-semibold cursor-pointer rounded-md h-[100px] flex justify-center items-center relative"
+                        >
+                          {solodata.jobs}
+                          <div className="absolute top-0 right-0 p-2">
+                            {solodata.difficulty_score.toLowerCase() ===
+                            "hard" ? (
+                              <div className="text-red-500 font-semibold">
+                                Hard
+                              </div>
+                            ) : solodata.difficulty_score.toLowerCase() ===
+                              "medium" ? (
+                              <div className="text-yellow-400 font-semibold">
+                                Medium
+                              </div>
+                            ) : (
+                              <div className="text-green-400 font-semibold">
+                                Easy
+                              </div>
+                            )}
+                          </div>
+                        </Dialog.Trigger>
+                        <Dialog.Portal>
+                          <Dialog.Overlay className="fixed inset-0 bg-black/50" />
+                          <Dialog.Content className="fixed top-1/2 left-1/2 bg-white -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-black">
+                            <div>{solodata.description}</div>
+                            <div className="pt-4">{solodata.steps}</div>
+                            <div className="pt-4">{solodata.tasks}</div>
+                          </Dialog.Content>
+                        </Dialog.Portal>
+                      </Dialog.Root>
                     );
                   }
                 )}
               </div>
+
               {data.preffered && (
                 <div className="pt-6">Preffered job : {data.preffered}</div>
               )}

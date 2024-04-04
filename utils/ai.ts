@@ -21,10 +21,14 @@ const parser = StructuredOutputParser.fromZodSchema(
           .describe(
             "Give how difficult is the job. Easy or Medium or Hard. Strictly follow the case sensitivity like the given options"
           ),
-        description: z
+        description: z.string().describe("Give description about the job"),
+        steps: z
+          .string()
+          .describe("Give the steps to follow to get this as a carrer"),
+        tasks: z
           .string()
           .describe(
-            "Give a short description about the job. What one do in this job on a daily basis"
+            "Give the how the day to day work of this carrer looks like "
           ),
       })
     ),
