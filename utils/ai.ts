@@ -15,20 +15,24 @@ const parser = StructuredOutputParser.fromZodSchema(
       z.object({
         jobs: z
           .string()
-          .describe("career that are suitable for the given questions only"),
+          .describe("6 careers that are suitable for the given questions only"),
         difficulty_score: z
           .string()
           .describe(
             "Give how difficult is the job. Easy or Medium or Hard. Strictly follow the case sensitivity like the given options"
           ),
         description: z.string().describe("Give description about the job"),
-        steps: z
-          .string()
-          .describe("Give the steps to follow to get this as a carrer"),
+        steps: z.array(
+          z
+            .string()
+            .describe(
+              "Give the steps to follow to get this as a carrer in a markdown format"
+            )
+        ),
         tasks: z
           .string()
           .describe(
-            "Give the how the day to day work of this carrer looks like "
+            "Give the how the day to day work of this carrer looks like"
           ),
       })
     ),
