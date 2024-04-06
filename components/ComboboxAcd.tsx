@@ -172,6 +172,34 @@ export function ComboboxAcd({ setData, setLoading }) {
                 </Select>
                 <FormMessage />
               </FormItem>
+              <FormField
+          control={form.control}
+          name="WorkEnvironment"
+          render={({ field }) => (
+            <div>
+              <FormItem className="pt-4">
+                <FormLabel>Favourite Subject</FormLabel>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select your prefered work Environment " />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Fast-paced">Mathematics</SelectItem>
+                    <SelectItem value="Steady-paced">Physics</SelectItem>
+                    <SelectItem value="Flexible">Chemistry</SelectItem>
+                    <SelectItem value="Flexible">Biology</SelectItem>
+                    <SelectItem value="Flexible">Economics</SelectItem>
+                    <SelectItem value="Flexible">History</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+
             </div>
           )}
         />
