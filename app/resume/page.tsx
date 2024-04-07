@@ -7,10 +7,8 @@ import { useState } from "react";
 const Resume = () => {
   const [data, setData] = useState("");
 
-  const handlesubmit = async (event) => {
-    event.preventDefault();
-    const res = await analyze_data("I love maths but I don't like coding");
-    console.log(res);
+  const handleSubmit = () => {
+    console.log("first");
   };
 
   return (
