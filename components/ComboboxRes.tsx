@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
+import { Textarea } from "@/components/ui/textarea";
 
 const FormSchema = z.object({
   Fullname: z.string().min(2, {
@@ -26,6 +27,19 @@ const FormSchema = z.object({
   Number: z.string().min(10, {
     message: "Please enter Mobile Number",
   }),
+  Experience: z.string(),
+  Education: z.string().min(5, {
+    message: "Please enter Education details",
+  }),
+  Education_From: z.string().min(4, {
+    message: "Please Enter From detail",
+  }),
+  Education_To: z.string().min(4, {
+    message: "Please Enter To detail",
+  }),
+  Location: z.string(),
+  Experience_From: z.string(),
+  Experience_To: z.string(),
 });
 
 export function ComboboxRes() {
@@ -35,6 +49,13 @@ export function ComboboxRes() {
       Fullname: "",
       Email: "",
       Number: "",
+      Education: "",
+      Education_From: "",
+      Education_To: "",
+      Location: "",
+      Experience: "",
+      Experience_From: "",
+      Experience_To: "",
     },
   });
 
@@ -51,47 +72,173 @@ export function ComboboxRes() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="w-full space-y-6 "
+      >
         <div className="flex flex-col gap-6">
-          <FormField
-            control={form.control}
-            name="Fullname"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Full Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="John Doe  " {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="Email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email Address</FormLabel>
-                <FormControl>
-                  <Input placeholder="johndoe@xyz.com" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="Number"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Mobile Number</FormLabel>
-                <FormControl>
-                  <Input {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex gap-8">
+            <div className="basis-1/2">
+              <FormField
+                control={form.control}
+                name="Fullname"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Doe  " {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="basis-1/2">
+              <FormField
+                control={form.control}
+                name="Email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email Address *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="johndoe@xyz.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+          <div className="flex gap-8">
+            <div className="basis-1/2">
+              <FormField
+                control={form.control}
+                name="Number"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Mobile Number *</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="basis-1/2">
+              <FormField
+                control={form.control}
+                name="Location"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Location</FormLabel>
+                    <FormControl>
+                      <Input placeholder="New York" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <div>Education Details</div>
+            <FormField
+              control={form.control}
+              name="Education"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Institution *</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex gap-8">
+              <div className="basis-1/2">
+                <FormField
+                  control={form.control}
+                  name="Education_From"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>From *</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="basis-1/2">
+                <FormField
+                  control={form.control}
+                  name="Education_To"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>To *</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <div>Experience Details</div>
+            <FormField
+              control={form.control}
+              name="Education"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Previous Employer Name *</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="flex gap-8">
+              <div className="basis-1/2">
+                <FormField
+                  control={form.control}
+                  name="Experience_From"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>From *</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <div className="basis-1/2">
+                <FormField
+                  control={form.control}
+                  name="Experience_To"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>To *</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          </div>
           <Button type="submit">Submit</Button>
         </div>
       </form>
