@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { InputGit } from "@/components/InputGit";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -58,6 +59,7 @@ export function ComboboxRes({ setData }) {
       Experience_From: "",
       Experience_Company: "",
       Experience_To: "",
+      Projects: [],
     },
   });
 
@@ -246,6 +248,7 @@ export function ComboboxRes({ setData }) {
                 </FormItem>
               )}
             />
+            <InputGit />
           </div>
           <Button type="submit">Submit</Button>
         </div>

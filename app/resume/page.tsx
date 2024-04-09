@@ -1,7 +1,6 @@
 "use client";
 
 import { ComboboxRes } from "@/components/ComboboxRes";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
 const Resume = () => {
@@ -19,6 +18,8 @@ const Resume = () => {
     Experience_To: "2086",
     Experience_Company: "Almod Company",
   });
+
+  const [gitdata, setgitData] = useState(null);
 
   const handlesubmit = () => {
     console.log("first");
