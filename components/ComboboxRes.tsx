@@ -43,7 +43,7 @@ const FormSchema = z.object({
   Experience_Description: z.string(),
 });
 
-export function ComboboxRes() {
+export function ComboboxRes({ setData }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -62,14 +62,7 @@ export function ComboboxRes() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+    setData(data);
   }
 
   return (
