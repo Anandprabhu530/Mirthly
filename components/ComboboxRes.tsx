@@ -27,7 +27,6 @@ const FormSchema = z.object({
   Number: z.string().min(10, {
     message: "Please enter Mobile Number",
   }),
-  Experience: z.string(),
   Education: z.string().min(5, {
     message: "Please enter Education details",
   }),
@@ -40,6 +39,8 @@ const FormSchema = z.object({
   Location: z.string(),
   Experience_From: z.string(),
   Experience_To: z.string(),
+  Experience_Company: z.string(),
+  Experience_Description: z.string(),
 });
 
 export function ComboboxRes() {
@@ -53,8 +54,9 @@ export function ComboboxRes() {
       Education_From: "",
       Education_To: "",
       Location: "",
-      Experience: "",
+      Experience_Description: "",
       Experience_From: "",
+      Experience_Company: "",
       Experience_To: "",
     },
   });
@@ -195,10 +197,10 @@ export function ComboboxRes() {
             <div>Experience Details</div>
             <FormField
               control={form.control}
-              name="Education"
+              name="Experience_Company"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Previous Employer Name *</FormLabel>
+                  <FormLabel>Previous Employer Name</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -213,7 +215,7 @@ export function ComboboxRes() {
                   name="Experience_From"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>From *</FormLabel>
+                      <FormLabel>From</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
@@ -228,7 +230,7 @@ export function ComboboxRes() {
                   name="Experience_To"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>To *</FormLabel>
+                      <FormLabel>To</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
@@ -238,6 +240,19 @@ export function ComboboxRes() {
                 />
               </div>
             </div>
+            <FormField
+              control={form.control}
+              name="Experience_Description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Experience Description</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
           <Button type="submit">Submit</Button>
         </div>
