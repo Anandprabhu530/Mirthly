@@ -1,6 +1,8 @@
 "use client";
 
 import { ComboboxRes } from "@/components/ComboboxRes";
+import { InputGit } from "@/components/InputGit";
+import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 
 const Resume = () => {
@@ -20,9 +22,10 @@ const Resume = () => {
   });
 
   const [gitdata, setgitData] = useState(null);
+  const [toggle, setToggle] = useState(false);
 
   const handlesubmit = () => {
-    console.log("first");
+    setToggle(true);
   };
 
   return (
@@ -32,7 +35,26 @@ const Resume = () => {
           <div className="border-2 border-red-500 basis-1/2 p-8">
             <div className="pb-8">Build your resume</div>
             <ComboboxRes setData={setData} />
+            <InputGit setgitData={setgitData} />
           </div>
+
+          <div>
+            <Dialog.Root>
+              <Dialog.Trigger
+                onClick={handlesubmit}
+                className="p-6 bg-black text-white"
+              >
+                Click to import
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 bg-black/50" />
+                <Dialog.Content className="fixed top-1/2 left-1/2 bg-white -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-black">
+                  <div>Please help me</div>
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
+          </div>
+
           <div className="border-2 border-red-500 basis-1/2 p-8">
             <div className=" border-2 border-black h-full">
               <div className="p-2 font-bold text-2xl">{data.Fullname}</div>

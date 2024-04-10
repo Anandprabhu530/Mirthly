@@ -59,7 +59,6 @@ export function ComboboxRes({ setData }) {
       Experience_From: "",
       Experience_Company: "",
       Experience_To: "",
-      Projects: [],
     },
   });
 
@@ -248,7 +247,6 @@ export function ComboboxRes({ setData }) {
                 </FormItem>
               )}
             />
-            <InputGit />
           </div>
           <Button type="submit">Submit</Button>
         </div>

@@ -24,6 +24,7 @@ export default function Home() {
   const handlesubmit = () => {
     setToggle(true);
   };
+
   return (
     <main className="p-10 w-full border-2 border-white h-screen">
       <div className="flex h-full gap-6">

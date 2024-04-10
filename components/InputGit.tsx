@@ -21,7 +21,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function InputGit() {
+export function InputGit({ setgitData }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -29,9 +29,12 @@ export function InputGit() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
-  }
+  const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    const res = await fetch(
+      `https://api.github.com/users/${data.username}/repos`
+    ).then((data) => data.json());
+    setgitData(res);
+  };
 
   return (
     <Form {...form}>
