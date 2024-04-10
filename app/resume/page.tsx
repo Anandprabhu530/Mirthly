@@ -21,11 +21,18 @@ const Resume = () => {
     Experience_Company: "Almod Company",
   });
 
-  const [gitdata, setgitData] = useState(null);
-  const [toggle, setToggle] = useState(false);
+  const [gitName, setgitName] = useState(null);
+  const [gitData, setgitData] = useState();
 
-  const handlesubmit = () => {
-    setToggle(true);
+  const handlesubmit = async () => {
+    const res = await fetch(
+      `https://api.github.com/users/${gitName}/repos`
+    ).then((data) => data.json());
+    setgitData(res);
+  };
+
+  const handlechange = (event) => {
+    setgitName(event?.target.value);
   };
 
   return (
@@ -35,24 +42,28 @@ const Resume = () => {
           <div className="border-2 border-red-500 basis-1/2 p-8">
             <div className="pb-8">Build your resume</div>
             <ComboboxRes setData={setData} />
-            <InputGit setgitData={setgitData} />
-          </div>
-
-          <div>
-            <Dialog.Root>
-              <Dialog.Trigger
-                onClick={handlesubmit}
-                className="p-6 bg-black text-white"
-              >
-                Click to import
-              </Dialog.Trigger>
-              <Dialog.Portal>
-                <Dialog.Overlay className="fixed inset-0 bg-black/50" />
-                <Dialog.Content className="fixed top-1/2 left-1/2 bg-white -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-black">
-                  <div>Please help me</div>
-                </Dialog.Content>
-              </Dialog.Portal>
-            </Dialog.Root>
+            <div className="flex pt-4 w-full justify-between gap-4 items-center">
+              <input
+                onChange={handlechange}
+                className="basis-2/3 border-2 border-black p-2"
+              />
+              <div>
+                <Dialog.Root>
+                  <Dialog.Trigger
+                    onClick={handlesubmit}
+                    className="p-2 bg-black text-white"
+                  >
+                    Click to import
+                  </Dialog.Trigger>
+                  <Dialog.Portal>
+                    <Dialog.Overlay className="fixed inset-0 bg-black/50" />
+                    <Dialog.Content className="fixed top-1/2 left-1/2 bg-white -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-black">
+                      <div>Please help me</div>
+                    </Dialog.Content>
+                  </Dialog.Portal>
+                </Dialog.Root>
+              </div>
+            </div>
           </div>
 
           <div className="border-2 border-red-500 basis-1/2 p-8">
