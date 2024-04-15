@@ -2,6 +2,8 @@
 
 import { ComboboxRes } from "@/components/ComboboxRes";
 import { InputGit } from "@/components/InputGit";
+import { Test } from "@/components/Text";
+
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 
@@ -41,29 +43,8 @@ const Resume = () => {
         <div className="flex border-2 border-black">
           <div className="border-2 border-red-500 basis-1/2 p-8">
             <div className="pb-8">Build your resume</div>
-            <ComboboxRes setData={setData} />
-            <div className="flex pt-4 w-full justify-between gap-4 items-center">
-              <input
-                onChange={handlechange}
-                className="basis-2/3 border-2 border-black p-2"
-              />
-              <div>
-                <Dialog.Root>
-                  <Dialog.Trigger
-                    onClick={handlesubmit}
-                    className="p-2 bg-black text-white"
-                  >
-                    Click to import
-                  </Dialog.Trigger>
-                  <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0 bg-black/50" />
-                    <Dialog.Content className="fixed top-1/2 left-1/2 bg-white -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-black">
-                      <div>Please help me</div>
-                    </Dialog.Content>
-                  </Dialog.Portal>
-                </Dialog.Root>
-              </div>
-            </div>
+            <div className="w-full flex justify-center items-center"><Test/></div>
+            
           </div>
 
           <div className="border-2 border-red-500 basis-1/2 p-8">

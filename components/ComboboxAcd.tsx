@@ -35,16 +35,17 @@ const FormSchema = z.object({
   }),
 });
 
-export function ComboboxAcd({ setData, setLoading }) {
+export function ComboboxAcd() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    setLoading(true);
-    const res = await analyze_data(data);
-    setLoading(false);
-    setData(res);
+    console.log(data);
+    // setLoading(true);
+    // const res = await analyze_data(data);
+    // setLoading(false);
+    // setData(res);
   };
 
   return (
