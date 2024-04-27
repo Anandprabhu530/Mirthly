@@ -1,7 +1,7 @@
 "use client";
-import * as React from "react"
+import * as React from "react";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,16 +9,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -61,134 +61,170 @@ const FormSchema = z.object({
   Experience_Description: z.string(),
 });
 
-
 export function Test() {
-  const [formnumber,setFormnumber] = React.useState(0);
+  const [formnumber, setFormnumber] = React.useState(0);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-        Fullname: "",
-        Email: "",
-        Number: "",
-        Education: "",
-        Education_From: "",
-        Education_To: "",
-        Location: "",
-        Experience_Description: "",
-        Experience_From: "",
-        Experience_Company: "",
-        Experience_To: "",
-      },
+      Fullname: "",
+      Email: "",
+      Number: "",
+      Education: "",
+      Education_From: "",
+      Education_To: "",
+      Location: "",
+      Experience_Description: "",
+      Experience_From: "",
+      Experience_Company: "",
+      Experience_To: "",
+    },
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-      console.log(data);
+    console.log("data");
   }
 
   return (
-    <Card className="w-[350px]">
+    <Card>
       <CardHeader>
-        <CardTitle>Create project</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
+        <CardTitle>Fill the form</CardTitle>
+        <CardDescription>Enter the below details </CardDescription>
       </CardHeader>
       <CardContent>
-      <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="w-full space-y-6 "
-      >
-        <div className="flex flex-col gap-6">
-          <div className={cn({'hidden':formnumber!==0})}>
-            <div className="flex gap-8">
-                <div className="basis-1/2">
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="w-full space-y-6 "
+          >
+            <div className="flex flex-col gap-6">
+              <div
+                className={cn(
+                  { hidden: formnumber !== 0 },
+                  "flex flex-col gap-4 w-[300px]"
+                )}
+              >
                 <FormField
-                    control={form.control}
-                    name="Fullname"
-                    render={({ field }) => (
+                  control={form.control}
+                  name="Fullname"
+                  render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Full Name *</FormLabel>
-                        <FormControl>
+                      <FormLabel>Full Name *</FormLabel>
+                      <FormControl>
                         <Input placeholder="John Doe  " {...field} />
-                        </FormControl>
-                        <FormMessage />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
-                    )}
+                  )}
                 />
-                </div>
-                <div className="basis-1/2">
+
                 <FormField
-                    control={form.control}
-                    name="Email"
-                    render={({ field }) => (
+                  control={form.control}
+                  name="Email"
+                  render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Email Address *</FormLabel>
-                        <FormControl>
+                      <FormLabel>Email Address *</FormLabel>
+                      <FormControl>
                         <Input placeholder="johndoe@xyz.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
-                    )}
+                  )}
                 />
-                </div>
-            </div>
-            <div className="flex gap-8">
-                <div className="basis-1/2">
+
                 <FormField
-                    control={form.control}
-                    name="Number"
-                    render={({ field }) => (
+                  control={form.control}
+                  name="Number"
+                  render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Mobile Number *</FormLabel>
-                        <FormControl>
+                      <FormLabel>Mobile Number *</FormLabel>
+                      <FormControl>
                         <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
-                    )}
+                  )}
                 />
-                </div>
-                <div className="basis-1/2">
+
                 <FormField
-                    control={form.control}
-                    name="Location"
-                    render={({ field }) => (
+                  control={form.control}
+                  name="Location"
+                  render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Location</FormLabel>
-                        <FormControl>
+                      <FormLabel>Location</FormLabel>
+                      <FormControl>
                         <Input placeholder="New York" {...field} />
-                        </FormControl>
-                        <FormMessage />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
-                    )}
+                  )}
                 />
+              </div>
+
+              <div
+                className={cn("flex flex-col gap-4", {
+                  hidden: formnumber !== 1,
+                })}
+              >
+                <div>Education Details</div>
+                <FormField
+                  control={form.control}
+                  name="Education"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Institution *</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="flex gap-8">
+                  <div className="basis-1/2">
+                    <FormField
+                      control={form.control}
+                      name="Education_From"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>From *</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="basis-1/2">
+                    <FormField
+                      control={form.control}
+                      name="Education_To"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>To *</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
                 </div>
-            </div>
-          </div>
+              </div>
 
-
-          <div className={cn("flex flex-col gap-4",{'hidden':formnumber!==1})}>
-            <div>Education Details</div>
-            <FormField
-              control={form.control}
-              name="Education"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Institution *</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex gap-8">
-              <div className="basis-1/2">
+              <div
+                className={cn("flex flex-col gap-4", {
+                  hidden: formnumber !== 2,
+                })}
+              >
+                <div>Experience Details</div>
                 <FormField
                   control={form.control}
-                  name="Education_From"
+                  name="Experience_Company"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>From *</FormLabel>
+                      <FormLabel>Previous Employer Name</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
@@ -196,65 +232,46 @@ export function Test() {
                     </FormItem>
                   )}
                 />
-              </div>
-              <div className="basis-1/2">
+                <div className="flex gap-8">
+                  <div className="basis-1/2">
+                    <FormField
+                      control={form.control}
+                      name="Experience_From"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>From</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="basis-1/2">
+                    <FormField
+                      control={form.control}
+                      name="Experience_To"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>To</FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
                 <FormField
                   control={form.control}
-                  name="Education_To"
+                  name="Experience_Description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>To *</FormLabel>
+                      <FormLabel>Experience Description</FormLabel>
                       <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className={cn("flex flex-col gap-4",{'hidden':formnumber!==2})}>
-            <div>Experience Details</div>
-            <FormField
-              control={form.control}
-              name="Experience_Company"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Previous Employer Name</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex gap-8">
-              <div className="basis-1/2">
-                <FormField
-                  control={form.control}
-                  name="Experience_From"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>From</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="basis-1/2">
-                <FormField
-                  control={form.control}
-                  name="Experience_To"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>To</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
+                        <Textarea {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -262,33 +279,37 @@ export function Test() {
                 />
               </div>
             </div>
-            <FormField
-              control={form.control}
-              name="Experience_Description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Experience Description</FormLabel>
-                  <FormControl>
-                    <Textarea {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-
-          
-        </div>
-      </form>
-    </Form>
-
+          </form>
+        </Form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="ghost" className={cn({'hidden':formnumber===0})} onClick={()=>{form.trigger()
-            setFormnumber(formnumber-1)}}><ArrowLeft/>Back</Button>
-        <Button variant="ghost" className={cn({'hidden':formnumber===2})} onClick={()=>setFormnumber(formnumber+1)}><ArrowRight/>Next</Button>
-        <Button type="submit" className={cn({'hidden':formnumber!==2})}>Submit</Button>
+        <Button
+          variant="ghost"
+          className={cn({ hidden: formnumber === 0 })}
+          onClick={() => {
+            form.trigger();
+            setFormnumber(formnumber - 1);
+          }}
+        >
+          <ArrowLeft />
+          Back
+        </Button>
+        <Button
+          variant="ghost"
+          className={cn({ hidden: formnumber === 2 })}
+          onClick={() => setFormnumber(formnumber + 1)}
+        >
+          <ArrowRight />
+          Next
+        </Button>
+        <Button
+          type="submit"
+          className={cn({ hidden: formnumber !== 2 })}
+          onClick={() => onSubmit()}
+        >
+          Submit
+        </Button>
       </CardFooter>
     </Card>
-  )
+  );
 }

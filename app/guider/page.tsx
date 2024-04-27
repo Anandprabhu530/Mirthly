@@ -26,9 +26,9 @@ export default function Home() {
   };
 
   return (
-    <main className="p-10 w-full border-2 border-white h-screen">
+    <main className="p-10 w-full border-2 border-red-400 h-screen">
       <div className="flex h-full gap-6">
-        <div className="border-2 rounded-xl border-black   flex flex-col basis-1/2">
+        <div className="border-2 rounded-xl border-black h-full flex flex-col basis-1/2">
           <div className="mx-8 py-6 w-11/12 h-fit text-xl font-semibold  border-b-[2px] border-[#c4c2c2]">
             Your Carrier Starts Here
           </div>
