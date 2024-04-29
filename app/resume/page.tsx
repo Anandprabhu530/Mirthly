@@ -46,7 +46,6 @@ const Resume = () => {
               <Test />
             </div>
           </div>
-
           <div className="border-2 border-red-500 basis-1/2 p-8">
             <div className=" border-2 border-black h-full">
               <div className="p-2 font-bold text-2xl">{data.Fullname}</div>

@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { ArrowBigLeft, ArrowLeft, ArrowRight } from "lucide-react";
+import { analyze_data } from "@/utils/ai";
 
 const FormSchema = z.object({
   Fullname: z.string().min(2, {
@@ -63,6 +64,7 @@ const FormSchema = z.object({
 
 export function Test() {
   const [formnumber, setFormnumber] = React.useState(0);
+  const [response, setResponse] = React.useState(0);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -81,7 +83,9 @@ export function Test() {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("data");
+    console.log(data);
+    const res = analyze_data(data);
+    setResponse(res);
   }
 
   return (
