@@ -75,7 +75,8 @@ export const analyze_data = async (user_input: inputobject) => {
   return response;
 };
 
-export const analyze_resume = async () => {
+export const analyze_resume = async ({ data }) => {
+  const passingdata = data; //parsing.
   const input =
     "Analyze this resume and find out where the improvements should be made.";
   const chain = RunnableSequence.from([
@@ -89,4 +90,5 @@ export const analyze_resume = async () => {
   const response = await chain.invoke({
     question: input,
   });
+  return response;
 };

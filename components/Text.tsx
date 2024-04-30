@@ -34,7 +34,7 @@ import {
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
 import { ArrowBigLeft, ArrowLeft, ArrowRight } from "lucide-react";
-import { analyze_data } from "@/utils/ai";
+import { analyze_data, analyze_resume } from "@/utils/ai";
 
 const FormSchema = z.object({
   Fullname: z.string().min(2, {
@@ -84,7 +84,7 @@ export function Test() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
-    const res = analyze_data(data);
+    const res = analyze_resume(data);
     setResponse(res);
   }
 
