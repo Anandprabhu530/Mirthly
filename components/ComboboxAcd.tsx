@@ -41,11 +41,8 @@ export function ComboboxAcd() {
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    console.log(data);
-    // setLoading(true);
-    // const res = await analyze_data(data);
-    // setLoading(false);
-    // setData(res);
+    const res = await analyze_data(data);
+    console.log(res);
   };
 
   return (

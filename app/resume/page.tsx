@@ -34,6 +34,9 @@ const Resume = () => {
   };
 
   const handlechange = (event) => {
+    //get all the gitname available and be able to scroll through that...
+    //Should be able to select his 0r her username and the handlesubmit function should be triggered
+    //Then we can obtain the projects done by the person and import if needed
     setgitName(event?.target.value);
   };
 
@@ -44,6 +47,10 @@ const Resume = () => {
           <div className="border-2 border-red-500 basis-1/2">
             <div className="w-full flex justify-center items-center h-full">
               <Test />
+              <input
+                placeholder="Enter your github username"
+                onChange={handlechange}
+              />
             </div>
           </div>
           <div className="border-2 border-red-500 basis-1/2 p-8">

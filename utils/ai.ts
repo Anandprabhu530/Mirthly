@@ -75,7 +75,7 @@ export const analyze_data = async (user_input: inputobject) => {
   return response;
 };
 
-export const analyze_resume = async ({ data }) => {
+export const analyze_resume = async (data) => {
   const passingdata = data; //parsing.
   const input =
     "Analyze this resume and find out where the improvements should be made.";

@@ -2,10 +2,14 @@ import Link from "next/link";
 
 const page = () => {
   return (
-    <div>
-      <Link href="/guider">Guider</Link>
+    <div className="flex gap-10 p-6">
+      <Link href="/guider" className="border-2 border-black px-2 py-2">
+        Guider
+      </Link>
 
-      <Link href="/resume">Resume Builder</Link>
+      <Link href="/resume" className="border-2 border-black px-2 py-2">
+        Resume Builder
+      </Link>
     </div>
   );
 };
