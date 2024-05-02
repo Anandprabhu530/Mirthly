@@ -10,6 +10,10 @@ const page = () => {
       <Link href="/resume" className="border-2 border-black px-2 py-2">
         Resume Builder
       </Link>
+
+      <Link href="/analyze" className="border-2 border-black px-2 py-2">
+        Resume Analyzer
+      </Link>
     </div>
   );
 };
