@@ -42,14 +42,14 @@ const Resume = () => {
   return (
     <main>
       <div className="h-screen">
-        <div className="flex border-2 border-black h-full">
-          <div className="border-2 border-red-500 basis-1/2">
-            <div className="w-full flex justify-center items-center h-full">
+        <div className="flex h-full">
+          <div className="basis-1/2">
+            <div className="w-full flex justify-center items-center h-full ">
               <Form_Builder />
             </div>
           </div>
-          <div className="border-2 border-red-500 basis-1/2 p-8">
-            <div className=" border-2 border-black h-full">
+          <div className="basis-1/2 p-8">
+            <div className=" border-2 border-white h-full rounded-xl p-4">
               <div className="p-2 font-bold text-2xl">{data.Fullname}</div>
               <div className="flex gap-4 pl-2">
                 <div>Email: {data.Email}</div>
@@ -62,7 +62,7 @@ const Resume = () => {
                   </div>
                 )}
               </div>
-              <div className="border-b border-black pb-2"></div>
+              <div className="border-b border-white pb-2"></div>
               <div className="p-2 text-2xl font-semibold">Education</div>
               <div className="px-2 flex w-full justify-between">
                 <div className="font-semibold">{data.Education}</div>
@@ -72,7 +72,7 @@ const Resume = () => {
               </div>
               {data.Experience_Company.length != 0 && (
                 <div>
-                  <div className="border-b border-black pb-2"></div>
+                  <div className="border-b border-white pb-2"></div>
                   <div className="p-2 text-2xl font-semibold">Experience</div>
                   <div className="px-2">
                     <div className="flex w-full justify-between">

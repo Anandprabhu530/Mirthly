@@ -84,8 +84,6 @@ export function Form_Builder() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
-    const res = analyze_resume(data);
-    setResponse(res);
   }
 
   return (
@@ -102,10 +100,9 @@ export function Form_Builder() {
           >
             <div className="flex flex-col gap-6">
               <div
-                className={cn(
-                  { hidden: formnumber !== 0 },
-                  "flex flex-col gap-4 w-[300px]"
-                )}
+                className={cn("flex flex-col gap-4 w-[300px]", {
+                  hidden: formnumber !== 0,
+                })}
               >
                 <FormField
                   control={form.control}
@@ -290,7 +287,8 @@ export function Form_Builder() {
         <Button
           variant="ghost"
           className={cn({ hidden: formnumber === 0 })}
-          onClick={() => {
+          onClick={(event) => {
+            event.preventDefault();
             form.trigger();
             setFormnumber(formnumber - 1);
           }}
@@ -301,16 +299,15 @@ export function Form_Builder() {
         <Button
           variant="ghost"
           className={cn({ hidden: formnumber === 2 })}
-          onClick={() => setFormnumber(formnumber + 1)}
+          onClick={(event) => {
+            event.preventDefault();
+            setFormnumber(formnumber + 1);
+          }}
         >
           <ArrowRight />
           Next
         </Button>
-        <Button
-          type="submit"
-          className={cn({ hidden: formnumber !== 2 })}
-          onClick={() => onSubmit()}
-        >
+        <Button type="submit" className={cn({ hidden: formnumber !== 2 })}>
           Submit
         </Button>
       </CardFooter>
