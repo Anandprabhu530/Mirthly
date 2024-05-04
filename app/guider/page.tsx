@@ -26,17 +26,17 @@ export default function Home() {
   };
 
   return (
-    <main className="p-10 w-full border-2 border-red-400 h-screen">
+    <main className="p-10 w-full h-screen">
       <div className="flex h-full gap-6">
-        <div className="border-2 rounded-xl border-black h-full flex flex-col basis-1/2">
+        <div className="border-2 rounded-xl border-white h-full flex flex-col basis-1/2">
           <div className="mx-8 py-6 w-11/12 h-fit text-xl font-semibold  border-b-[2px] border-[#c4c2c2]">
             Your Carrier Starts Here
           </div>
           <div className="p-8">
-            <ComboboxAcd setData={setData} setLoading={setLoading} />
+            <ComboboxAcd setData={setData} />
           </div>
         </div>
-        <div className="border-2 border-black  flex basis-1/2 rounded-xl">
+        <div className="border-2 border-white  flex basis-1/2 rounded-xl">
           {data.recommendations.length !== 0 ? (
             <div className="p-6 w-full">
               <div className="font-semibold text-xl">Recommended Jobs : </div>
@@ -47,7 +47,7 @@ export default function Home() {
                       <Dialog.Root key={index}>
                         <Dialog.Trigger
                           onClick={handlesubmit}
-                          className="border-2 border-black font-semibold cursor-pointer rounded-md h-[100px] flex justify-center items-center relative"
+                          className="border-2 border-white font-semibold cursor-pointer rounded-md h-[100px] flex justify-center items-center relative"
                         >
                           {solodata.jobs}
                           <div className="absolute top-0 right-0 p-2">
@@ -70,7 +70,7 @@ export default function Home() {
                         </Dialog.Trigger>
                         <Dialog.Portal>
                           <Dialog.Overlay className="fixed inset-0 bg-black/50" />
-                          <Dialog.Content className="fixed top-1/2 left-1/2 bg-white -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-black">
+                          <Dialog.Content className="fixed top-1/2 left-1/2 bg-black -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-white">
                             <div>
                               <div className="pb-2 text-xl font-semibold">
                                 What is {solodata.jobs}

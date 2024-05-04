@@ -1,8 +1,7 @@
 "use client";
 
-import { ComboboxRes } from "@/components/ComboboxRes";
 import { InputGit } from "@/components/InputGit";
-import { Test } from "@/components/Text";
+import { Form_Builder } from "@/components/Form_Builder";
 
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
@@ -46,7 +45,7 @@ const Resume = () => {
         <div className="flex border-2 border-black h-full">
           <div className="border-2 border-red-500 basis-1/2">
             <div className="w-full flex justify-center items-center h-full">
-              <Test />
+              <Form_Builder />
             </div>
           </div>
           <div className="border-2 border-red-500 basis-1/2 p-8">
