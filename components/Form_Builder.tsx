@@ -88,16 +88,16 @@ export function Form_Builder() {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Fill the form</CardTitle>
-        <CardDescription>Enter the below details </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="w-full space-y-6 "
-          >
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="w-full space-y-6 "
+        >
+          <CardHeader>
+            <CardTitle>Fill the form</CardTitle>
+            <CardDescription>Enter the below details </CardDescription>
+          </CardHeader>
+          <CardContent>
             <div className="flex flex-col gap-6">
               <div
                 className={cn("flex flex-col gap-4 w-[300px]", {
@@ -280,37 +280,37 @@ export function Form_Builder() {
                 />
               </div>
             </div>
-          </form>
-        </Form>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button
-          variant="ghost"
-          className={cn({ hidden: formnumber === 0 })}
-          onClick={(event) => {
-            event.preventDefault();
-            form.trigger();
-            setFormnumber(formnumber - 1);
-          }}
-        >
-          <ArrowLeft />
-          Back
-        </Button>
-        <Button
-          variant="ghost"
-          className={cn({ hidden: formnumber === 2 })}
-          onClick={(event) => {
-            event.preventDefault();
-            setFormnumber(formnumber + 1);
-          }}
-        >
-          <ArrowRight />
-          Next
-        </Button>
-        <Button type="submit" className={cn({ hidden: formnumber !== 2 })}>
-          Submit
-        </Button>
-      </CardFooter>
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            <Button
+              variant="ghost"
+              className={cn({ hidden: formnumber === 0 })}
+              onClick={(event) => {
+                event.preventDefault();
+                form.trigger();
+                setFormnumber(formnumber - 1);
+              }}
+            >
+              <ArrowLeft />
+              Back
+            </Button>
+            <Button
+              variant="ghost"
+              className={cn({ hidden: formnumber === 2 })}
+              onClick={(event) => {
+                event.preventDefault();
+                setFormnumber(formnumber + 1);
+              }}
+            >
+              <ArrowRight />
+              Next
+            </Button>
+            <Button type="submit" className={cn({ hidden: formnumber !== 2 })}>
+              Submit
+            </Button>
+          </CardFooter>
+        </form>
+      </Form>
     </Card>
   );
 }
