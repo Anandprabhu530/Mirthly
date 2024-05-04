@@ -47,10 +47,6 @@ const Resume = () => {
           <div className="border-2 border-red-500 basis-1/2">
             <div className="w-full flex justify-center items-center h-full">
               <Test />
-              <input
-                placeholder="Enter your github username"
-                onChange={handlechange}
-              />
             </div>
           </div>
           <div className="border-2 border-red-500 basis-1/2 p-8">
