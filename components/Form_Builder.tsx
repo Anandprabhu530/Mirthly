@@ -91,7 +91,7 @@ export function Form_Builder({ setData }) {
 
   return (
     <Card>
-      <Form {...form}>
+      {/* <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-6 "
@@ -326,7 +326,7 @@ export function Form_Builder({ setData }) {
             </Button>
           </CardFooter>
         </form>
-      </Form>
+      </Form> */}
     </Card>
   );
 }

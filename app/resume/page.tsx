@@ -1,9 +1,5 @@
 "use client";
-
-import { InputGit } from "@/components/InputGit";
 import { Form_Builder } from "@/components/Form_Builder";
-
-import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 
 const Resume = () => {
