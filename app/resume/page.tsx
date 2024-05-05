@@ -8,27 +8,27 @@ import { useState } from "react";
 
 const Resume = () => {
   const [data, setData] = useState({
-    Fullname: "John Doe",
-    Email: "Johndoe@gmail.com",
-    Number: "+96 54546-56485",
-    Location: "Sunnyvile",
-    Education: "Almod University",
-    Education_From: "2019",
-    Education_To: "2023",
-    Experience_Description:
-      "lorem ipsum eojsfo oewroiqpc wihisccbjk zejkfh poweip2qe  of eoiso rgojoesd ",
-    Experience_From: "2085",
-    Experience_To: "2086",
-    Experience_Company: "Almod Company",
+    Fullname: "",
+    Email: "",
+    Number: "",
+    Location: "",
+    Education: "",
+    Degree: "",
+    Education_From: "",
+    Education_To: "",
+    Experience_Description: "",
+    Experience_From: "",
+    Experience_To: "",
+    Experience_Company: "",
   });
-  const [formdata, setFormdata] = useState("");
+
   return (
     <main>
       <div className="h-screen">
         <div className="flex h-full">
           <div className="basis-1/2">
             <div className="w-full flex justify-center items-center h-full">
-              <Form_Builder setFormdata={setFormdata} />
+              <Form_Builder setData={setData} />
             </div>
           </div>
           <div className="basis-1/2 p-8">
@@ -36,7 +36,6 @@ const Resume = () => {
               <div className="p-2 font-bold text-2xl">{data.Fullname}</div>
               <div className="flex gap-4 pl-2">
                 <div>Email: {data.Email}</div>
-                {formdata && <div>{formdata}</div>}
                 <div>|</div>
                 <div>{data.Number}</div>
                 {data.Location.length != 0 && (
@@ -49,7 +48,10 @@ const Resume = () => {
               <div className="border-b border-white pb-2"></div>
               <div className="p-2 text-2xl font-semibold">Education</div>
               <div className="px-2 flex w-full justify-between">
-                <div className="font-semibold">{data.Education}</div>
+                <div className="flex flex-col gap-2">
+                  <div className="font-semibold">{data.Education}</div>
+                  <div className="font-semibold">{data.Degree}</div>
+                </div>
                 <div>
                   {data.Education_From} - {data.Education_To}
                 </div>

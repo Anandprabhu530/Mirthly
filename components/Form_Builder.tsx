@@ -49,6 +49,7 @@ const FormSchema = z.object({
   Education: z.string().min(5, {
     message: "Please enter Education details",
   }),
+  Degree: z.string(),
   Education_From: z.string().min(4, {
     message: "Please Enter From detail",
   }),
@@ -62,7 +63,7 @@ const FormSchema = z.object({
   Experience_Description: z.string(),
 });
 
-export function Form_Builder() {
+export function Form_Builder({ setData }) {
   const [formnumber, setFormnumber] = React.useState(0);
   const [response, setResponse] = React.useState(0);
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -72,6 +73,7 @@ export function Form_Builder() {
       Email: "",
       Number: "",
       Education: "",
+      Degree: "",
       Education_From: "",
       Education_To: "",
       Location: "",
@@ -84,6 +86,7 @@ export function Form_Builder() {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
+    setData(data);
   }
 
   return (
@@ -173,6 +176,19 @@ export function Form_Builder() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Institution *</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="Degree"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Degree *</FormLabel>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
