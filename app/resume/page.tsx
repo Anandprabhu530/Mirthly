@@ -21,31 +21,14 @@ const Resume = () => {
     Experience_To: "2086",
     Experience_Company: "Almod Company",
   });
-
-  const [gitName, setgitName] = useState(null);
-  const [gitData, setgitData] = useState();
-
-  const handlesubmit = async () => {
-    const res = await fetch(
-      `https://api.github.com/users/${gitName}/repos`
-    ).then((data) => data.json());
-    setgitData(res);
-  };
-
-  const handlechange = (event) => {
-    //get all the gitname available and be able to scroll through that...
-    //Should be able to select his 0r her username and the handlesubmit function should be triggered
-    //Then we can obtain the projects done by the person and import if needed
-    setgitName(event?.target.value);
-  };
-
+  const [formdata, setFormdata] = useState("");
   return (
     <main>
       <div className="h-screen">
         <div className="flex h-full">
           <div className="basis-1/2">
-            <div className="w-full flex justify-center items-center h-full ">
-              <Form_Builder />
+            <div className="w-full flex justify-center items-center h-full">
+              <Form_Builder setFormdata={setFormdata} />
             </div>
           </div>
           <div className="basis-1/2 p-8">
@@ -53,6 +36,7 @@ const Resume = () => {
               <div className="p-2 font-bold text-2xl">{data.Fullname}</div>
               <div className="flex gap-4 pl-2">
                 <div>Email: {data.Email}</div>
+                {formdata && <div>{formdata}</div>}
                 <div>|</div>
                 <div>{data.Number}</div>
                 {data.Location.length != 0 && (
