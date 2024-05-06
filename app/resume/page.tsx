@@ -16,6 +16,10 @@ const Resume = () => {
     Experience_From: "",
     Experience_To: "",
     Experience_Company: "",
+    project1: "",
+    Project1_Description: "",
+    project2: "",
+    Project2_Description: "",
   });
 
   return (

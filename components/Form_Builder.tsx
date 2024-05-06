@@ -61,6 +61,10 @@ const FormSchema = z.object({
   Experience_To: z.string(),
   Experience_Company: z.string(),
   Experience_Description: z.string(),
+  project1: z.string(),
+  Project1_Description: z.string(),
+  project2: z.string(),
+  Project2_Description: z.string(),
 });
 
 export function Form_Builder({ setData }) {
@@ -81,6 +85,10 @@ export function Form_Builder({ setData }) {
       Experience_From: "",
       Experience_Company: "",
       Experience_To: "",
+      project1: "",
+      Project1_Description: "",
+      project2: "",
+      Project2_Description: "",
     },
   });
 
@@ -91,7 +99,7 @@ export function Form_Builder({ setData }) {
 
   return (
     <Card>
-      {/* <Form {...form}>
+      <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-6 "
@@ -295,6 +303,67 @@ export function Form_Builder({ setData }) {
                   )}
                 />
               </div>
+              <div
+                className={cn("flex flex-col gap-4 w-[300px]", {
+                  hidden: formnumber !== 3,
+                })}
+              >
+                <FormField
+                  control={form.control}
+                  name="project1"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Project Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="John Doe  " {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="Project1_Description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Project Description</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="project2"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Project Name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="John Doe  " {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="Project2_Description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Project Description</FormLabel>
+                      <FormControl>
+                        <Textarea {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
@@ -312,7 +381,7 @@ export function Form_Builder({ setData }) {
             </Button>
             <Button
               variant="ghost"
-              className={cn({ hidden: formnumber === 2 })}
+              className={cn({ hidden: formnumber === 3 })}
               onClick={(event) => {
                 event.preventDefault();
                 setFormnumber(formnumber + 1);
@@ -321,12 +390,12 @@ export function Form_Builder({ setData }) {
               <ArrowRight />
               Next
             </Button>
-            <Button type="submit" className={cn({ hidden: formnumber !== 2 })}>
+            <Button type="submit" className={cn({ hidden: formnumber !== 3 })}>
               Submit
             </Button>
           </CardFooter>
         </form>
-      </Form> */}
+      </Form>
     </Card>
   );
 }
