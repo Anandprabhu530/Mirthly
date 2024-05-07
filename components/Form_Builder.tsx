@@ -468,7 +468,7 @@ export function Form_Builder({ setData, data }) {
               Next
             </Button>
             <Button type="submit" className={cn({ hidden: formnumber !== 3 })}>
-              Submit
+              Download PDF
             </Button>
           </CardFooter>
         </form>
