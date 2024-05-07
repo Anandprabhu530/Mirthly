@@ -97,9 +97,13 @@ export function Form_Builder({ setData }) {
     setData(data);
   }
 
+  const handleChange = (event) =>{
+    event.preventDefault();
+    console.log("Inside");
+  }
   return (
     <Card>
-      <Form {...form}>
+      {/* <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-6 "
@@ -395,7 +399,10 @@ export function Form_Builder({ setData }) {
             </Button>
           </CardFooter>
         </form>
-      </Form>
+      </Form> */}
+      <form>
+        <input name="Fullname" onChange={handleChange}/>
+      </form>
     </Card>
   );
 }
