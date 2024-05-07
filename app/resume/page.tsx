@@ -21,28 +21,37 @@ const Resume = () => {
     project2: "",
     Project2_Description: "",
   });
-
   return (
     <main>
       <div className="h-screen">
         <div className="flex h-full">
           <div className="basis-1/2">
             <div className="w-full flex justify-center items-center h-full">
-              <Form_Builder setData={setData} />
+              <Form_Builder data={data} setData={setData} />
             </div>
           </div>
           <div className="basis-1/2 p-8">
             <div className=" border-2 border-white h-full rounded-xl p-4">
-              <div className="p-2 font-bold text-2xl">{data.Fullname}</div>
+              <div className="p-2 font-bold text-2xl">
+                {data.Fullname.length === 0 ? (
+                  <div>Your Name</div>
+                ) : (
+                  <div>{data.Fullname}</div>
+                )}
+              </div>
               <div className="flex gap-4 pl-2">
                 <div>Email: {data.Email}</div>
                 <div>|</div>
-                <div>{data.Number}</div>
-                {data.Location.length != 0 && (
-                  <div className="flex gap-4">
-                    <div>|</div>
-                    <div>{data.Location}</div>
+                <div>Mobile No: {data.Number}</div>
+                <div>|</div>
+                {data.Location.length !== 0 ? (
+                  <div>
+                    <div className="flex gap-4">
+                      <div>Location: {data.Location}</div>
+                    </div>
                   </div>
+                ) : (
+                  <div>Your Location</div>
                 )}
               </div>
               <div className="border-b border-white pb-2"></div>

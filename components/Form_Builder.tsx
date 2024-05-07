@@ -22,7 +22,7 @@ import {
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { set, z } from "zod";
 
 import {
   Form,
@@ -67,9 +67,10 @@ const FormSchema = z.object({
   Project2_Description: z.string(),
 });
 
-export function Form_Builder({ setData }) {
+export function Form_Builder({ setData, data }) {
   const [formnumber, setFormnumber] = React.useState(0);
   const [response, setResponse] = React.useState(0);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -94,13 +95,16 @@ export function Form_Builder({ setData }) {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     console.log(data);
-    setData(data);
   }
 
-  const handleChange = (event) =>{
+  const handleChange = (event) => {
     event.preventDefault();
-    console.log("Inside");
-  }
+    setData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
   return (
     <Card>
       <Form {...form}>
@@ -126,7 +130,12 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Full Name *</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe  " {...field} onChange={handleChange} />
+                        <Input
+                          placeholder="John Doe  "
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Fullname}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -140,7 +149,12 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Email Address *</FormLabel>
                       <FormControl>
-                        <Input placeholder="johndoe@xyz.com" {...field} />
+                        <Input
+                          placeholder="johndoe@xyz.com"
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Email}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -154,7 +168,11 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Mobile Number *</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Number}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -168,7 +186,12 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Location</FormLabel>
                       <FormControl>
-                        <Input placeholder="New York" {...field} />
+                        <Input
+                          placeholder="New York"
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Location}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -189,7 +212,11 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Institution *</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Education}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -202,7 +229,11 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Degree *</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Degree}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -217,7 +248,11 @@ export function Form_Builder({ setData }) {
                         <FormItem>
                           <FormLabel>From *</FormLabel>
                           <FormControl>
-                            <Input {...field} />
+                            <Input
+                              {...field}
+                              onChange={handleChange}
+                              value={data.Education_From}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -232,7 +267,11 @@ export function Form_Builder({ setData }) {
                         <FormItem>
                           <FormLabel>To *</FormLabel>
                           <FormControl>
-                            <Input {...field} />
+                            <Input
+                              {...field}
+                              onChange={handleChange}
+                              value={data.Education_To}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -255,7 +294,11 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Previous Employer Name</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Experience_Company}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -270,7 +313,11 @@ export function Form_Builder({ setData }) {
                         <FormItem>
                           <FormLabel>From</FormLabel>
                           <FormControl>
-                            <Input {...field} />
+                            <Input
+                              {...field}
+                              onChange={handleChange}
+                              value={data.Experience_From}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -285,7 +332,11 @@ export function Form_Builder({ setData }) {
                         <FormItem>
                           <FormLabel>To</FormLabel>
                           <FormControl>
-                            <Input {...field} />
+                            <Input
+                              {...field}
+                              onChange={handleChange}
+                              value={data.Experience_To}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -300,7 +351,11 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Experience Description</FormLabel>
                       <FormControl>
-                        <Textarea {...field} />
+                        <Textarea
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Experience_Description}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -319,7 +374,12 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Project Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe  " {...field} />
+                        <Input
+                          placeholder="John Doe  "
+                          {...field}
+                          onChange={handleChange}
+                          value={data.project1}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -333,7 +393,11 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Project Description</FormLabel>
                       <FormControl>
-                        <Textarea {...field} />
+                        <Textarea
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Project1_Description}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -347,7 +411,12 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Project Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe  " {...field} />
+                        <Input
+                          placeholder="John Doe  "
+                          {...field}
+                          onChange={handleChange}
+                          value={data.project2}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -361,7 +430,11 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Project Description</FormLabel>
                       <FormControl>
-                        <Textarea {...field} />
+                        <Textarea
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Project2_Description}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -400,9 +473,6 @@ export function Form_Builder({ setData }) {
           </CardFooter>
         </form>
       </Form>
-      <form>
-        <input name="Fullname" onChange={handleChange}/>
-      </form>
     </Card>
   );
 }
