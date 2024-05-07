@@ -363,7 +363,7 @@ export function Form_Builder({ setData, data }) {
                 />
               </div>
               <div
-                className={cn("flex flex-col gap-4 w-[300px]", {
+                className={cn("flex flex-col gap-4 w-[450px]", {
                   hidden: formnumber !== 3,
                 })}
               >
