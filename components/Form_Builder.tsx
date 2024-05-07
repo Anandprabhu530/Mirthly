@@ -103,7 +103,7 @@ export function Form_Builder({ setData }) {
   }
   return (
     <Card>
-      {/* <Form {...form}>
+      <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="w-full space-y-6 "
@@ -126,7 +126,7 @@ export function Form_Builder({ setData }) {
                     <FormItem>
                       <FormLabel>Full Name *</FormLabel>
                       <FormControl>
-                        <Input placeholder="John Doe  " {...field} />
+                        <Input placeholder="John Doe  " {...field} onChange={handleChange} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -399,7 +399,7 @@ export function Form_Builder({ setData }) {
             </Button>
           </CardFooter>
         </form>
-      </Form> */}
+      </Form>
       <form>
         <input name="Fullname" onChange={handleChange}/>
       </form>
