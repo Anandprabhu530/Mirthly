@@ -40,9 +40,17 @@ const Resume = () => {
                 )}
               </div>
               <div className="flex gap-4 pl-2">
-                <div>Email: {data.Email}</div>
+                {data.Email.length === 0 ? (
+                  <div>Your Email Id</div>
+                ) : (
+                  <div>{data.Email}</div>
+                )}
                 <div>|</div>
-                <div>Mobile No: {data.Number}</div>
+                {data.Number.length === 0 ? (
+                  <div>Your Mobile Number</div>
+                ) : (
+                  <div>{data.Number}</div>
+                )}
                 <div>|</div>
                 {data.Location.length !== 0 ? (
                   <div>
