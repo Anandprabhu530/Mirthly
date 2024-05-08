@@ -44,14 +44,14 @@ const Resume = () => {
 
   return (
     <main>
-      <div className="">
-        <div className="flex h-screen">
-          <div className="basis-1/2 h-screen overflow-hidden">
+      <div>
+        <div className="flex flex-col lg:flex-row lg:h-screen w-full">
+          <div className="lg:basis-1/2 h-screen lg:overflow-hidden w-full">
             <div className="w-full flex justify-center items-center h-full">
               <Form_Builder data={data} setData={setData} setsubmitted={setsubmitted}/>
             </div>
           </div>
-          <div id="pdf_download" className="basis-1/2 p-8 bg-white text-black overflow-auto">
+          <div id="pdf_download" className="lg:basis-1/2 p-8 bg-white text-black lg:overflow-auto">
             <div className=" border-2 border-black h-full p-4">
               <div className="p-2 font-bold text-2xl">
                 {data.Fullname.length === 0 ? (

@@ -64,7 +64,7 @@ export function ComboboxAcd({ setData }) {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="w-[350px] space-y-2"
+              className="lg:w-[350px] space-y-2"
             >
               <FormField
                 control={form.control}

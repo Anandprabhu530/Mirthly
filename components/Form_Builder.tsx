@@ -107,22 +107,22 @@ export function Form_Builder({ setData, data,setsubmitted }) {
   };
 
   return (
-    <Card>
+    <Card className="w-full lg:w-fit">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full space-y-6 "
+          className="w-full"
         >
           <CardHeader>
             <CardTitle>Fill the form</CardTitle>
             <CardDescription>Enter the below details </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-6">
+            <div>
 
               {/* Personel Details */}
               <div
-                className={cn("flex flex-col gap-4 w-[300px]", {
+                className={cn("flex flex-col gap-4 lg:w-[300px] w-full", {
                   hidden: formnumber !== 0,
                 })}
               >
@@ -370,7 +370,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
 
               {/* Project Detials */}
               <div
-                className={cn("flex flex-col gap-4 w-[450px]", {
+                className={cn("flex flex-col gap-4 lg:w-[450px]", {
                   hidden: formnumber !== 3,
                 })}
               >
@@ -450,47 +450,52 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                 />
               </div>
 
-
             </div>
           </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button
-              variant="ghost"
-              className={cn({ hidden: formnumber === 0 })}
-              onClick={(event) => {
-                event.preventDefault();                
-                setFormnumber(formnumber - 1);
-              }}
-            >
-              <ArrowLeft />
-              Back
-            </Button>
-            <Button
-              variant="ghost"
-              className={cn({ hidden: formnumber === 3 })}
-              onClick={(event) => {
-                event.preventDefault();
-                if(formnumber===0){
-                  form.trigger(["Fullname","Email","Number"])                  
-                  if(data.Fullname.length===0 || data.Email.length===0 ||data.Number.length===0){
-                    return
+          <CardFooter className="flex flex-col gap-6">
+            <div className="flex justify-between w-full">
+              <Button
+                variant="ghost"
+                className={cn({ hidden: formnumber === 0 })}
+                onClick={(event) => {
+                  event.preventDefault();                
+                  setFormnumber(formnumber - 1);
+                }}
+              >
+                <ArrowLeft />
+                Back
+              </Button>
+
+              <Button
+                variant="ghost"
+                className={cn({ hidden: formnumber === 3 })}
+                onClick={(event) => {
+                  event.preventDefault();
+                  if(formnumber===0){
+                    form.trigger(["Fullname","Email","Number"])                  
+                    if(data.Fullname.length===0 || data.Email.length===0 ||data.Number.length===0){
+                      return
+                    }
+                  }else if(formnumber===1){
+                    form.trigger(["Education","Degree","Education_From","Education_To"]) 
+                    if(data.Education.length===0 || data.Degree.length===0 || data.Education_From.length===0 || data.Education_To===0){
+                      return
+                    }
                   }
-                }else if(formnumber===1){
-                  form.trigger(["Education","Degree","Education_From","Education_To"]) 
-                  if(data.Education.length===0 || data.Degree.length===0 || data.Education_From.length===0 || data.Education_To===0){
-                    return
-                  }
-                }
-                setFormnumber(formnumber + 1);
-              }}
-            >
-              <ArrowRight />
-              Next
-            </Button>
-            <Button type="submit" onClick={onSubmit} className={cn({ hidden: formnumber !== 3 })}>
-              Download PDF
-            </Button>
+                  setFormnumber(formnumber + 1);
+                }}
+              >
+                <ArrowRight />
+                Next
+              </Button>
+
+              <Button type="submit" onClick={onSubmit} className={cn({ hidden: formnumber !== 3 })}>
+                Download PDF
+              </Button>
+            </div>
+            <div className="lg:hidden">Scroll Below for preview</div>
           </CardFooter>
+
         </form>
       </Form>
     </Card>

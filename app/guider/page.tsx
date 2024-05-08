@@ -26,17 +26,17 @@ export default function Home() {
   };
 
   return (
-    <main className="p-10 w-full h-screen">
-      <div className="flex h-full gap-6">
-        <div className="border-2 rounded-xl border-white h-full flex flex-col basis-1/2">
-          <div className="mx-8 py-6 w-11/12 h-fit text-xl font-semibold  border-b-[2px] border-[#c4c2c2]">
+    <main className="lg:p-10 p-4 w-full h-screen">
+      <div className="flex flex-col lg:flex-row h-full gap-8">
+        <div className="border-2 rounded-xl border-white lg:h-full flex flex-col basis-1/2">
+          <div className="lg:mx-8 lg:py-6 flex justify-center items-center py-4 lg:w-11/12 w-full h-fit text-xl font-semibold border-b-[2px] border-[#c4c2c2]">
             Your Carrier Starts Here
           </div>
-          <div className="p-8">
+          <div className="lg:p-8 p-2">
             <ComboboxAcd setData={setData} />
           </div>
         </div>
-        <div className="border-2 border-white  flex basis-1/2 rounded-xl">
+        <div className="border-2 border-white flex basis-1/2 rounded-xl">
           {data.recommendations.length !== 0 ? (
             <div className="p-6 w-full">
               <div className="font-semibold text-xl">Recommended Jobs : </div>
