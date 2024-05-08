@@ -49,7 +49,9 @@ const FormSchema = z.object({
   Education: z.string().min(5, {
     message: "Please enter Education details",
   }),
-  Degree: z.string(),
+  Degree: z.string().min(5,{
+    message:"Please Enter your Degree Details",
+  }),
   Education_From: z.string().min(4, {
     message: "Please Enter From detail",
   }),
@@ -456,14 +458,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
               variant="ghost"
               className={cn({ hidden: formnumber === 0 })}
               onClick={(event) => {
-                event.preventDefault();
-                if(formnumber===0){
-                  form.trigger(["Fullname","Email","Number"])
-                  if(!form.getValues("Fullname") || !form.getValues("Email")||!form.getValues("Number")){
-                    return
-                  }
-                }
-                
+                event.preventDefault();                
                 setFormnumber(formnumber - 1);
               }}
             >
@@ -475,6 +470,17 @@ export function Form_Builder({ setData, data,setsubmitted }) {
               className={cn({ hidden: formnumber === 3 })}
               onClick={(event) => {
                 event.preventDefault();
+                if(formnumber===0){
+                  form.trigger(["Fullname","Email","Number"])                  
+                  if(data.Fullname.length===0 || data.Email.length===0 ||data.Number.length===0){
+                    return
+                  }
+                }else if(formnumber===1){
+                  form.trigger(["Education","Degree","Education_From","Education_To"]) 
+                  if(data.Education.length===0 || data.Degree.length===0 || data.Education_From.length===0 || data.Education_To===0){
+                    return
+                  }
+                }
                 setFormnumber(formnumber + 1);
               }}
             >
