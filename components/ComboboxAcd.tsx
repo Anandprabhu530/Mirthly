@@ -54,8 +54,8 @@ export function ComboboxAcd({ setData }) {
   };
 
   return (
-    <div className="flex justify-center">
-      <Card>
+    <div className="flex justify-center w-full">
+      <Card className="w-full lg:w-fit">
         <CardHeader>
           <CardTitle>Fill the form</CardTitle>
           <CardDescription>Enter the below details </CardDescription>

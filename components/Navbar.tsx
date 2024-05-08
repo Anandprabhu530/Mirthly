@@ -1,9 +1,16 @@
+import Link from "next/link"
+
 const Navbar = () =>{
     return(
-        <div className="text-black w-full flex p-4 justify-center gap-6">
-            <div className="border hover:bg-white hover:text-black cursor-pointer border-white text-white p-2 rounded-xl">Guider</div>
-            <div className="border hover:bg-white hover:text-black cursor-pointer border-white text-white p-2 rounded-xl">Builder</div>
-            <div className="border hover:bg-white hover:text-black cursor-pointer border-white text-white p-2 rounded-xl">Analyze</div>
+        <div className="flex justify-center">
+            <div className=" w-fit bg-slate-800 rounded-full">
+                <div className="hidden lg:visible absolute text-white font-bold">Logo</div>
+                <div className="text-black w-fit flex justify-center ">
+                    <Link href="/guider" className="border hover:bg-white hover:text-black cursor-pointer text-lg text-white px-2 py-1 rounded-full">Guider</Link>
+                    <Link href="/resume" className="border hover:bg-white hover:text-black cursor-pointer text-lg text-white px-2 py-1 rounded-full">Builder</Link>
+                    <Link href="/analyze" className="border hover:bg-white hover:text-black cursor-pointer text-lg text-white px-2 py-1 rounded-full">Analyze</Link>
+                </div>
+            </div>
         </div>
     )
 }

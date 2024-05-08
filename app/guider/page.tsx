@@ -1,6 +1,7 @@
 "use client";
 
 import { ComboboxAcd } from "@/components/ComboboxAcd";
+import Navbar from "@/components/Navbar";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
 
@@ -26,15 +27,20 @@ export default function Home() {
   };
 
   return (
-    <main className="lg:p-10 p-4 w-full h-screen">
-      <div className="flex flex-col lg:flex-row h-full gap-8">
-        <div className="border-2 rounded-xl border-white lg:h-full flex flex-col basis-1/2">
-          <div className="lg:mx-8 lg:py-6 flex justify-center items-center py-4 lg:w-11/12 w-full h-fit text-xl font-semibold border-b-[2px] border-[#c4c2c2]">
+    <main className="w-full h-screen">
+      <div className="flex flex-col lg:flex-row h-full gap-8 lg:p-6">
+        <div className="w-full h-full basis-1/2">
+          <div className="w-full pb-6 pt-6 lg:pt-0">
+        <Navbar/>
+        </div>
+        <div className="lg:border-2 rounded-xl lg:border-white lg:h-fit flex flex-col w-full">
+          <div className="lg:mx-8 lg:py-6 flex justify-center items-center lg:w-11/12 w-full h-fit text-xl font-semibold lg:border-b-[2px] lg:border-[#c4c2c2]">
             Your Carrier Starts Here
           </div>
-          <div className="lg:p-8 p-2">
+          <div className="lg:p-8 w-full">
             <ComboboxAcd setData={setData} />
           </div>
+        </div>
         </div>
         <div className="border-2 border-white flex basis-1/2 rounded-xl">
           {data.recommendations.length !== 0 ? (

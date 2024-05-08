@@ -47,8 +47,9 @@ const Resume = () => {
     <main>
       <div>
         <div className="flex flex-col lg:flex-row lg:h-screen w-full">
-          <div className="lg:basis-1/2 h-fit lg:overflow-hidden w-full">
-          <Navbar/>
+          <div className="lg:basis-1/2 h-fit lg:overflow-hidden w-full pt-6">
+            <Navbar/>
+            <div className="w-full flex p-0 lg:hidden text-xl font-semibold justify-center items-center pt-6 lg:pt-0">Build Your Resume</div>
             <div className="w-full flex justify-center h-full pt-4">
               <Form_Builder data={data} setData={setData} setsubmitted={setsubmitted}/>
             </div>
