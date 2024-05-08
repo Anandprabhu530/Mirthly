@@ -67,9 +67,8 @@ const FormSchema = z.object({
   Project2_Description: z.string(),
 });
 
-export function Form_Builder({ setData, data }) {
+export function Form_Builder({ setData, data,setsubmitted }) {
   const [formnumber, setFormnumber] = React.useState(0);
-  const [response, setResponse] = React.useState(0);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -94,7 +93,7 @@ export function Form_Builder({ setData, data }) {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log(data);
+    setsubmitted(true);
   }
 
   const handleChange = (event) => {
@@ -204,7 +203,7 @@ export function Form_Builder({ setData, data }) {
                   hidden: formnumber !== 1,
                 })}
               >
-                <div>Education Details</div>
+                <div className="text-xl font-semibold">Education Details</div>
                 <FormField
                   control={form.control}
                   name="Education"
@@ -286,7 +285,7 @@ export function Form_Builder({ setData, data }) {
                   hidden: formnumber !== 2,
                 })}
               >
-                <div>Experience Details</div>
+                <div className="text-xl font-semibold">Experience (If Applicable)</div>
                 <FormField
                   control={form.control}
                   name="Experience_Company"
@@ -367,12 +366,13 @@ export function Form_Builder({ setData, data }) {
                   hidden: formnumber !== 3,
                 })}
               >
+                <div className="text-xl font-semibold">Projects</div>
                 <FormField
                   control={form.control}
                   name="project1"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Project Name</FormLabel>
+                      <FormLabel>Project-1 Name</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="John Doe  "
@@ -391,7 +391,7 @@ export function Form_Builder({ setData, data }) {
                   name="Project1_Description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Project Description</FormLabel>
+                      <FormLabel>Project-1 Description</FormLabel>
                       <FormControl>
                         <Textarea
                           {...field}
@@ -409,7 +409,7 @@ export function Form_Builder({ setData, data }) {
                   name="project2"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Project Name</FormLabel>
+                      <FormLabel>Project-2 Name</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="John Doe  "
@@ -428,7 +428,7 @@ export function Form_Builder({ setData, data }) {
                   name="Project2_Description"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Project Description</FormLabel>
+                      <FormLabel>Project-2 Description</FormLabel>
                       <FormControl>
                         <Textarea
                           {...field}
@@ -467,7 +467,7 @@ export function Form_Builder({ setData, data }) {
               <ArrowRight />
               Next
             </Button>
-            <Button type="submit" className={cn({ hidden: formnumber !== 3 })}>
+            <Button type="submit" onClick={onSubmit} className={cn({ hidden: formnumber !== 3 })}>
               Download PDF
             </Button>
           </CardFooter>

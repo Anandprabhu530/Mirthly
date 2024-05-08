@@ -1,6 +1,19 @@
 "use client";
 import { Form_Builder } from "@/components/Form_Builder";
 import { useState } from "react";
+import generatePDF,{ Resolution } from "react-to-pdf";
+
+const options = {
+  method: 'open',
+  resolution: Resolution.HIGH,
+  page: {
+     margin: 5,
+  },
+  canvas: {
+     qualityRatio: 1
+  },
+};
+
 
 const Resume = () => {
   const [data, setData] = useState({
@@ -18,20 +31,28 @@ const Resume = () => {
     Experience_Company: "",
     project1: "",
     Project1_Description: "",
-    project2: " ",
+    project2: "",
     Project2_Description: "",
   });
+  const [submitted,setsubmitted] = useState(false);
+
+  if(submitted){
+    const downloadarea = ()=>document.getElementById("pdf_download")
+    generatePDF(downloadarea,options)
+    setsubmitted(false);
+  }
+
   return (
     <main>
-      <div className="h-screen">
-        <div className="flex h-full">
-          <div className="basis-1/2">
+      <div className="">
+        <div className="flex h-screen">
+          <div className="basis-1/2 h-screen overflow-hidden">
             <div className="w-full flex justify-center items-center h-full">
-              <Form_Builder data={data} setData={setData} />
+              <Form_Builder data={data} setData={setData} setsubmitted={setsubmitted}/>
             </div>
           </div>
-          <div className="basis-1/2 p-8">
-            <div className=" border-2 border-white h-full rounded-xl p-4">
+          <div id="pdf_download" className="basis-1/2 p-8 bg-white text-black overflow-auto">
+            <div className=" border-2 border-black h-full p-4">
               <div className="p-2 font-bold text-2xl">
                 {data.Fullname.length === 0 ? (
                   <div>Your Name</div>
@@ -62,7 +83,7 @@ const Resume = () => {
                   <div>Your Location</div>
                 )}
               </div>
-              <div className="border-b border-white pb-2 mx-2"></div>
+              <div className="border-b border-black pb-2 mx-2"></div>
               {data.Education.length != 0 ? (
                 <div>
                   <div className="p-2 text-2xl font-semibold">Education</div>
@@ -83,8 +104,8 @@ const Resume = () => {
                   Education
                 </div>
               )}
-              <div className="border-b border-white pb-2 mx-2"></div>
-              {data.Experience_Company.length != 0 ? (
+              <div className="border-b border-black pb-2 mx-2"></div>
+              {data.Experience_Company.length != 0 && (
                 <div>
                   <div className="p-2 text-2xl font-semibold">Experience</div>
                   <div className="px-2">
@@ -98,13 +119,10 @@ const Resume = () => {
                     </div>
                     <div>{data.Experience_Description}</div>
                   </div>
-                </div>
-              ) : (
-                <div className="p-2 text-2xl font-semibold pb-20">
-                  Experience (Optional)
+                  <div className="border-b border-black pb-2 mx-2"></div>
                 </div>
               )}
-              <div className="border-b border-white pb-2 mx-2"></div>
+              
               {data.project1.length === 0 ? (
                 <div>
                   <div className="p-2 text-2xl font-semibold pb-20">
