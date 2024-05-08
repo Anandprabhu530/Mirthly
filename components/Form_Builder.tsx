@@ -117,6 +117,8 @@ export function Form_Builder({ setData, data,setsubmitted }) {
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-6">
+
+              {/* Personel Details */}
               <div
                 className={cn("flex flex-col gap-4 w-[300px]", {
                   hidden: formnumber !== 0,
@@ -198,6 +200,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                 />
               </div>
 
+              {/* Education Details */}
               <div
                 className={cn("flex flex-col gap-4", {
                   hidden: formnumber !== 1,
@@ -280,6 +283,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                 </div>
               </div>
 
+              {/* Experience Details */}
               <div
                 className={cn("flex flex-col gap-4", {
                   hidden: formnumber !== 2,
@@ -361,6 +365,8 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                   )}
                 />
               </div>
+
+              {/* Project Detials */}
               <div
                 className={cn("flex flex-col gap-4 w-[450px]", {
                   hidden: formnumber !== 3,
@@ -441,6 +447,8 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                   )}
                 />
               </div>
+
+
             </div>
           </CardContent>
           <CardFooter className="flex justify-between">
@@ -449,7 +457,13 @@ export function Form_Builder({ setData, data,setsubmitted }) {
               className={cn({ hidden: formnumber === 0 })}
               onClick={(event) => {
                 event.preventDefault();
-                form.trigger();
+                if(formnumber===0){
+                  form.trigger(["Fullname","Email","Number"])
+                  if(!form.getValues("Fullname") || !form.getValues("Email")||!form.getValues("Number")){
+                    return
+                  }
+                }
+                
                 setFormnumber(formnumber - 1);
               }}
             >
