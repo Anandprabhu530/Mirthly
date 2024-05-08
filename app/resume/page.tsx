@@ -1,5 +1,6 @@
 "use client";
 import { Form_Builder } from "@/components/Form_Builder";
+import Navbar from "@/components/Navbar";
 import { useState } from "react";
 import generatePDF,{ Resolution } from "react-to-pdf";
 
@@ -46,8 +47,9 @@ const Resume = () => {
     <main>
       <div>
         <div className="flex flex-col lg:flex-row lg:h-screen w-full">
-          <div className="lg:basis-1/2 h-screen lg:overflow-hidden w-full">
-            <div className="w-full flex justify-center items-center h-full">
+          <div className="lg:basis-1/2 h-fit lg:overflow-hidden w-full">
+          <Navbar/>
+            <div className="w-full flex justify-center h-full pt-4">
               <Form_Builder data={data} setData={setData} setsubmitted={setsubmitted}/>
             </div>
           </div>

@@ -111,7 +111,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full"
+          className="sm:w-full"
         >
           <CardHeader>
             <CardTitle>Fill the form</CardTitle>
@@ -122,7 +122,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
 
               {/* Personel Details */}
               <div
-                className={cn("flex flex-col gap-4 lg:w-[300px] w-full", {
+                className={cn("flex flex-col gap-4 lg:w-[450px] w-full", {
                   hidden: formnumber !== 0,
                 })}
               >
