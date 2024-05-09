@@ -1,10 +1,15 @@
-const Analyzers = () => {
-  return (
-    <div>
-      Check Whether we have his old resume in database or not... If not redirect
-      him to add resume section to enhance cv... Change Name to Enhance CV
-    </div>
-  );
-};
+'use client'
 
-export default Analyzers;
+import { clicked_button } from "@/utils/supabase";
+
+const analyze = ()=>{
+  return(
+    <div>
+      <div>Hello World</div>
+      <button className="p-2 border-2 border-white text-white bg-transparent">Submit</button>
+    </div>
+  )
+} 
+
+
+export default analyze;
