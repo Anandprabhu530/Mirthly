@@ -6,7 +6,7 @@ const analyze = ()=>{
   return(
     <div>
       <div>Hello World</div>
-      <button className="p-2 border-2 border-white text-white bg-transparent">Submit</button>
+      <button className="p-2 border-2 border-white text-white bg-transparent" onClick={clicked_button}>Submit</button>
     </div>
   )
 } 
