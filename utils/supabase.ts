@@ -1,28 +1,25 @@
 import { createClient } from '@supabase/supabase-js'
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export const clicked_button = async() =>{
     const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!,process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
-    console.log(supabase)
-    signInWithGithub(supabase)
+    return supabase;
 }
 
-async function signInWithGithub(supabase) {
-    // const { data, error } = await supabase.auth.signInWithOAuth({
-    //   provider: 'github',
+export async function signInWithGithub(supabase,origin) {
+    // const {data,error} = supabase.auth.signInWithOAuth({
+    //     provider:"github",
+    //     options: {
+    //         redirectTo: origin,
+    //     },
     // })
-    // console.log(data)
     // if(error){
-    //     console.log(error);
+    //     console.log(error)
+    // }else{
+    //     redirect(data.url)
     // }
-
-    
-    let { data: test, error } = await supabase
-    .from('test')
-    .select('*')
-    console.log(test);
-    if(error){
-        console.log("error");
-        console.log(error);
-    }
-
+    console.log(supabase)
+    console.log(origin);
 }
+
