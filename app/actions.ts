@@ -28,10 +28,9 @@ export async function signup(formData: FormData) {
     password: formData.get("password") as string,
   };
   const { data: Test, error } = await supabase.auth.signUp(data);
-  console.log(Test);
   if (error) {
+    console.log(error);
     redirect("/error");
   }
-  revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/guider");
 }
