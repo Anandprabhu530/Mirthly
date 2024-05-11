@@ -18,7 +18,7 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/guider");
 }
 
 export async function signup(formData: FormData) {
@@ -28,6 +28,16 @@ export async function signup(formData: FormData) {
     password: formData.get("password") as string,
   };
   const { data: Test, error } = await supabase.auth.signUp(data);
+
+  //insert into table with userid data.id(check once)
+  // const { data, error } = await supabase.from('movies').insert(
+  //   {
+  //     name: 'The Empire Strikes Back',
+  //     description:
+  //       'After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda.',
+  //   },
+  // )
+
   if (error) {
     console.log(error);
     redirect("/error");

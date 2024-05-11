@@ -2,19 +2,18 @@
 import { Form_Builder } from "@/components/Form_Builder";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
-import generatePDF,{ Resolution } from "react-to-pdf";
+import generatePDF, { Resolution, Options } from "react-to-pdf";
 
-const options = {
-  method: 'open',
+const options: Options = {
+  method: "open",
   resolution: Resolution.HIGH,
   page: {
-     margin: 5,
+    margin: 5,
   },
   canvas: {
-     qualityRatio: 1
+    qualityRatio: 1,
   },
 };
-
 
 const Resume = () => {
   const [data, setData] = useState({
@@ -35,11 +34,13 @@ const Resume = () => {
     project2: "",
     Project2_Description: "",
   });
-  const [submitted,setsubmitted] = useState(false);
+  const [submitted, setsubmitted] = useState(false);
 
-  if(submitted){
-    const downloadarea = ()=>document.getElementById("pdf_download")
-    generatePDF(downloadarea,options)
+  if (submitted) {
+    //add this data to database.. for analysis
+    //data is in data usestate
+    const downloadarea = () => document.getElementById("pdf_download");
+    generatePDF(downloadarea, options);
     setsubmitted(false);
   }
 
@@ -48,13 +49,22 @@ const Resume = () => {
       <div>
         <div className="flex flex-col lg:flex-row lg:h-screen w-full">
           <div className="lg:basis-1/2 h-fit lg:overflow-hidden w-full pt-6">
-            <Navbar/>
-            <div className="w-full flex p-0 lg:hidden text-xl font-semibold justify-center items-center pt-6 lg:pt-0">Build Your Resume</div>
+            <Navbar />
+            <div className="w-full flex p-0 lg:hidden text-xl font-semibold justify-center items-center pt-6 lg:pt-0">
+              Build Your Resume
+            </div>
             <div className="w-full flex justify-center h-full pt-4">
-              <Form_Builder data={data} setData={setData} setsubmitted={setsubmitted}/>
+              <Form_Builder
+                data={data}
+                setData={setData}
+                setsubmitted={setsubmitted}
+              />
             </div>
           </div>
-          <div id="pdf_download" className="lg:basis-1/2 p-8 bg-white text-black lg:overflow-auto">
+          <div
+            id="pdf_download"
+            className="lg:basis-1/2 p-8 bg-white text-black lg:overflow-auto"
+          >
             <div className=" border-2 border-black h-full p-4">
               <div className="p-2 font-bold text-2xl">
                 {data.Fullname.length === 0 ? (
@@ -125,7 +135,7 @@ const Resume = () => {
                   <div className="border-b border-black pb-2 mx-2"></div>
                 </div>
               )}
-              
+
               {data.project1.length === 0 ? (
                 <div>
                   <div className="p-2 text-2xl font-semibold pb-20">

@@ -30,11 +30,13 @@ const parser = StructuredOutputParser.fromZodSchema(
               "Give the steps to follow to get this as a carrer in a markdown format"
             )
         ),
-        tasks: z
-          .string()
-          .describe(
-            "Give the how the day to day work of this carrer looks like"
-          ),
+        tasks: z.array(
+          z
+            .string()
+            .describe(
+              "Give the how the day to day work of this carrer looks like"
+            )
+        ),
       })
     ),
     specific: z
