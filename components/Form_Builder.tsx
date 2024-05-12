@@ -49,8 +49,8 @@ const FormSchema = z.object({
   Education: z.string().min(5, {
     message: "Please enter Education details",
   }),
-  Degree: z.string().min(5,{
-    message:"Please Enter your Degree Details",
+  Degree: z.string().min(5, {
+    message: "Please Enter your Degree Details",
   }),
   Education_From: z.string().min(4, {
     message: "Please Enter From detail",
@@ -69,7 +69,7 @@ const FormSchema = z.object({
   Project2_Description: z.string(),
 });
 
-export function Form_Builder({ setData, data,setsubmitted }) {
+export function Form_Builder({ setData, data, setsubmitted }) {
   const [formnumber, setFormnumber] = React.useState(0);
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -95,6 +95,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
+    console.log("first");
     setsubmitted(true);
   }
 
@@ -109,17 +110,13 @@ export function Form_Builder({ setData, data,setsubmitted }) {
   return (
     <Card className="w-full lg:w-fit">
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="sm:w-full"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="sm:w-full">
           <CardHeader>
             <CardTitle>Fill the form</CardTitle>
             <CardDescription>Enter the below details </CardDescription>
           </CardHeader>
           <CardContent>
             <div>
-
               {/* Personel Details */}
               <div
                 className={cn("flex flex-col gap-4 lg:w-[450px] w-full", {
@@ -291,7 +288,9 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                   hidden: formnumber !== 2,
                 })}
               >
-                <div className="text-xl font-semibold">Experience (If Applicable)</div>
+                <div className="text-xl font-semibold">
+                  Experience (If Applicable)
+                </div>
                 <FormField
                   control={form.control}
                   name="Experience_Company"
@@ -449,7 +448,6 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                   )}
                 />
               </div>
-
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-6">
@@ -458,7 +456,7 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                 variant="ghost"
                 className={cn({ hidden: formnumber === 0 })}
                 onClick={(event) => {
-                  event.preventDefault();                
+                  event.preventDefault();
                   setFormnumber(formnumber - 1);
                 }}
               >
@@ -471,15 +469,29 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                 className={cn({ hidden: formnumber === 3 })}
                 onClick={(event) => {
                   event.preventDefault();
-                  if(formnumber===0){
-                    form.trigger(["Fullname","Email","Number"])                  
-                    if(data.Fullname.length===0 || data.Email.length===0 ||data.Number.length===0){
-                      return
+                  if (formnumber === 0) {
+                    form.trigger(["Fullname", "Email", "Number"]);
+                    if (
+                      data.Fullname.length === 0 ||
+                      data.Email.length === 0 ||
+                      data.Number.length === 0
+                    ) {
+                      return;
                     }
-                  }else if(formnumber===1){
-                    form.trigger(["Education","Degree","Education_From","Education_To"]) 
-                    if(data.Education.length===0 || data.Degree.length===0 || data.Education_From.length===0 || data.Education_To===0){
-                      return
+                  } else if (formnumber === 1) {
+                    form.trigger([
+                      "Education",
+                      "Degree",
+                      "Education_From",
+                      "Education_To",
+                    ]);
+                    if (
+                      data.Education.length === 0 ||
+                      data.Degree.length === 0 ||
+                      data.Education_From.length === 0 ||
+                      data.Education_To === 0
+                    ) {
+                      return;
                     }
                   }
                   setFormnumber(formnumber + 1);
@@ -489,13 +501,16 @@ export function Form_Builder({ setData, data,setsubmitted }) {
                 Next
               </Button>
 
-              <Button type="submit" onClick={onSubmit} className={cn({ hidden: formnumber !== 3 })}>
+              <Button
+                type="submit"
+                onClick={onSubmit}
+                className={cn({ hidden: formnumber !== 3 })}
+              >
                 Download PDF
               </Button>
             </div>
             <div className="lg:hidden">Scroll Below for preview</div>
           </CardFooter>
-
         </form>
       </Form>
     </Card>

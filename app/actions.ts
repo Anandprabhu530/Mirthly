@@ -27,20 +27,45 @@ export async function signup(formData: FormData) {
     email: formData.get("email") as string,
     password: formData.get("password") as string,
   };
-  const { data: Test, error } = await supabase.auth.signUp(data);
+  const { data: Test, error: errorsignup } = await supabase.auth.signUp(data);
+  if (errorsignup) {
+    console.log(errorsignup);
+    redirect("/error");
+  }
+  console.log(`Returned Data`);
+  console.log(Test.user.id);
+  console.log();
 
-  //insert into table with userid data.id(check once)
-  // const { data, error } = await supabase.from('movies').insert(
-  //   {
-  //     name: 'The Empire Strikes Back',
-  //     description:
-  //       'After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda.',
-  //   },
-  // )
+  const { Insertdata, error } = await supabase
+    .from("resume")
+    .insert([{ id: `${Test.user.id}`, data: { sampleuser: "TestUser" } }])
+    .select();
+
+  console.log(`Inserted Data`);
+  console.log(Insertdata);
+  console.log();
 
   if (error) {
     console.log(error);
     redirect("/error");
   }
   redirect("/guider");
+}
+
+export async function updateuserdata(user_data) {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { error } = await supabase
+    .from("resume")
+    .update({ data: user_data })
+    .eq("id", user.id);
+
+  console.log("success");
+
+  if (error) {
+    console.log(error);
+  }
 }

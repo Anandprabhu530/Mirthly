@@ -1,19 +1,26 @@
-"use client";
+import { analyze_resume } from "@/utils/ai";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-import { clicked_button } from "@/utils/supabase/server";
+export default async function analyze() {
+  const supabase = createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  console.log(user?.id);
 
-export default function analyze() {
-  const handleclick = () => {
-    const res = clicked_button();
-    console.log(res);
-  };
+  let { data: resume, error } = await supabase.from("resume").select("*");
+
+  if (resume[0].data === null) {
+    redirect("/builder");
+  } else {
+    const res = analyze_resume(resume[0].data);
+  }
+
   return (
     <div>
       <div>Hello World</div>
-      <button
-        className="p-2 border-2 border-white text-white bg-transparent"
-        onClick={handleclick}
-      >
+      <button className="p-2 border-2 border-white text-white bg-transparent">
         Submit
       </button>
     </div>

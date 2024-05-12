@@ -1,4 +1,5 @@
 "use client";
+import { updateuserdata } from "@/app/actions";
 import { Form_Builder } from "@/components/Form_Builder";
 import Navbar from "@/components/Navbar";
 import { useState } from "react";
@@ -38,9 +39,11 @@ const Resume = () => {
 
   if (submitted) {
     //add this data to database.. for analysis
+    console.log("data");
+    updateuserdata(data);
     //data is in data usestate
-    const downloadarea = () => document.getElementById("pdf_download");
-    generatePDF(downloadarea, options);
+    // const downloadarea = () => document.getElementById("pdf_download");
+    // generatePDF(downloadarea, options);
     setsubmitted(false);
   }
 
