@@ -1,22 +1,10 @@
-import { analyze_resume } from "@/utils/ai";
+import { fetchUserData } from "@/app/actions";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
 export default async function analyze() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  console.log(user?.id);
-
-  let { data: resume, error } = await supabase.from("resume").select("*");
-
-  if (resume[0].data === null) {
-    redirect("/builder");
-  } else {
-    const res = analyze_resume(resume[0].data);
-  }
-
+  const data = await fetchUserData();
+  console.log(data);
   return (
     <div>
       <div>Hello World</div>

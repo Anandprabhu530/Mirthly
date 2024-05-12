@@ -46,7 +46,7 @@ export default function Home() {
           {data.recommendations.length !== 0 ? (
             <div className="p-6 w-full">
               <div className="font-semibold text-xl">Recommended Jobs : </div>
-              <div className="grid grid-cols-2 gap-6 w-full pt-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full pt-6">
                 {data.recommendations.map(
                   (solodata: solodata_type, index: number) => {
                     return (
@@ -76,7 +76,7 @@ export default function Home() {
                         </Dialog.Trigger>
                         <Dialog.Portal>
                           <Dialog.Overlay className="fixed inset-0 bg-black/50" />
-                          <Dialog.Content className="fixed top-1/2 left-1/2 bg-black -translate-x-1/2 -translate-y-1/2 p-10 rounded-md shadow-md border-2 border-white">
+                          <Dialog.Content className="fixed top-1/2 left-1/2 bg-black -translate-x-1/2 -translate-y-1/2 p-4 lg:p-10 rounded-md w-[80%] overflow-auto shadow-md border-2 border-white">
                             <div>
                               <div className="pb-2 text-xl font-semibold">
                                 What is {solodata.jobs}

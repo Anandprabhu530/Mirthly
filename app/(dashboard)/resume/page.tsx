@@ -27,6 +27,7 @@ const Resume = () => {
     Education_From: "",
     Education_To: "",
     Experience_Description: "",
+    Experience_Role: "",
     Experience_From: "",
     Experience_To: "",
     Experience_Company: "",
@@ -38,12 +39,7 @@ const Resume = () => {
   const [submitted, setsubmitted] = useState(false);
 
   if (submitted) {
-    //add this data to database.. for analysis
-    console.log("data");
     updateuserdata(data);
-    //data is in data usestate
-    // const downloadarea = () => document.getElementById("pdf_download");
-    // generatePDF(downloadarea, options);
     setsubmitted(false);
   }
 
@@ -133,6 +129,9 @@ const Resume = () => {
                         {data.Experience_From} - {data.Experience_To}
                       </div>
                     </div>
+                    <div className="text-lg font-semibold">
+                      {data.Experience_Role}
+                    </div>
                     <div>{data.Experience_Description}</div>
                   </div>
                   <div className="border-b border-black pb-2 mx-2"></div>
@@ -162,7 +161,7 @@ const Resume = () => {
                   <div>
                     <div className="p-2 text-2xl font-semibold">Projects</div>
                     <div className="pl-2">
-                      <div className="text-lg font-medium pb-1">
+                      <div className="text-lg font-semibold pb-1">
                         {data.project1}
                       </div>
                       <div>{data.Project1_Description}</div>
@@ -170,7 +169,7 @@ const Resume = () => {
                   </div>
                   <div>
                     <div className="pl-2 pt-4">
-                      <div className="text-lg font-medium pb-1">
+                      <div className="text-lg font-semibold pb-1">
                         {data.project2}
                       </div>
                       <div>{data.Project2_Description}</div>

@@ -66,6 +66,7 @@ const FormSchema = z.object({
   project1: z.string(),
   Project1_Description: z.string(),
   project2: z.string(),
+  Experience_Role: z.string(),
   Project2_Description: z.string(),
 });
 
@@ -83,6 +84,7 @@ export function Form_Builder({ setData, data, setsubmitted }) {
       Education_From: "",
       Education_To: "",
       Location: "",
+      Experience_Role: "",
       Experience_Description: "",
       Experience_From: "",
       Experience_Company: "",
@@ -302,6 +304,23 @@ export function Form_Builder({ setData, data, setsubmitted }) {
                           {...field}
                           onChange={handleChange}
                           value={data.Experience_Company}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="Experience_Role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Previous Role Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          onChange={handleChange}
+                          value={data.Experience_Role}
                         />
                       </FormControl>
                       <FormMessage />

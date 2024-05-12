@@ -59,6 +59,7 @@ export const analyze_data = async (user_input: inputobject) => {
   3. Preferred Work Environment: ${user_input.WorkEnvironment}
   
   Please provide career guidance based on these details, ensuring accurate and error-free results.`;
+
   const chain = RunnableSequence.from([
     PromptTemplate.fromTemplate(
       "Answer the users question as best as possible.\n{format_instructions}\n{question}"
@@ -76,23 +77,4 @@ export const analyze_data = async (user_input: inputobject) => {
   });
 
   return response;
-};
-
-export const analyze_resume = async (data) => {
-  console.log(data);
-  // const passingdata = data; //parsing.
-  // const input =
-  //   "Analyze this resume and find out where the improvements should be made.";
-  // const chain = RunnableSequence.from([
-  //   PromptTemplate.fromTemplate("Answer about the resume"),
-  //   new ChatGoogleGenerativeAI({
-  //     apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
-  //     modelName: "gemini-pro",
-  //     maxOutputTokens: 2048,
-  //   }),
-  // ]);
-  // const response = await chain.invoke({
-  //   question: input,
-  // });
-  // return response;
 };
