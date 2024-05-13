@@ -1,4 +1,5 @@
 import { fetchUserData } from "@/app/actions";
+import Navbar from "@/components/Navbar";
 import { analyze_resume } from "@/utils/ai_resume";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
@@ -46,22 +47,29 @@ const response_data = {
 
 
 export default async function analyze() {
-  const res = await analyze_resume(data);
-  console.log(res);
+  // const res = await analyze_resume(data);
+  // console.log(res);
   return (
     <div>
-      <div className="text-xl font-semibold">Resume Analysis</div>
-      <div>
-        <div>Things that can be improved in your Experience Section</div>
-        <div>{response_data.Experience_Improvements}</div>
-        <div>Project Name Improvements</div>
-        <div>{response_data.project_name}</div>
-        <div>Project 1 Description Improvements</div>
+      <div className="p-4">
+        <Navbar/>
+      </div>
+      <div className="flex p-4">
+      <div className="border-2 border-white basis-1/2">
+      <div className="text-2xl font-semibold pl-4 pb-4">Resume Analysis</div>
+      <div className="pl-4">
+        <div className="font-semibold text-xl">Things that can be improved in your Experience Section</div>
+        <div className="pb-4">{response_data.Experience_Improvements}</div>
+        <div className="font-semibold text-xl">Project Name Improvements</div>
+        <div className="pb-4">{response_data.project_name}</div>
+        <div className="font-semibold text-xl pb-2">Project 1 Description Improvements</div>
         {response_data.project1_Description.map((solodata,index)=>{return(<div key={index}>{index+1}. {solodata}</div>)})}
-        <div>Project 2 Description Improvements</div>
+        <div className="font-semibold text-xl pt-4 pb-2">Project 2 Description Improvements</div>
         {response_data.project2_Description.map((solodata,index)=>{return(<div key={index}>{index+1}. {solodata}</div>)})}
-        <div>Additional Recommendations</div>
+        <div className="font-semibold text-xl pt-4 pb-2">Additional Recommendations</div>
         {response_data.additional_recommendations.map((solodata,index)=>{return(<div key={index}>{index+1}. {solodata}</div>)})}
+      </div>
+      </div>
       </div>
     </div>
   );
