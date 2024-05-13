@@ -2,17 +2,20 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { StructuredOutputParser } from "langchain/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { RunnableSequence } from "@langchain/core/runnables";
-import { z } from "zod";
+import { array, z } from "zod";
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
-    Experience_Improvements: z
-      .string()
+    Experience_Improvements:
+      z.string()
       .describe("Give a suitable Expereince description with the given data"),
     project_name: z.string().describe("Give details on how to name projects"),
-    project1_Description: z
-      .string()
-      .describe("Give a suitable project description for the given project 1"),
+    project1_Description: z.
+      array(z.string()
+      .describe("Give a suitable project description in multiple lines for the given project 1")),
+      project2_Description: z.
+      array(z.string()
+      .describe("Give a suitable project description in multiple lines for the given project 2")),
     additional_recommendations: z.array(
       z
         .string()

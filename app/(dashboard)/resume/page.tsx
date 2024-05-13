@@ -41,6 +41,9 @@ const Resume = () => {
   if (submitted) {
     updateuserdata(data);
     setsubmitted(false);
+    //download pdf
+    // const downloadarea = ()=>document.getElementById("pdf_download")
+    // generatePDF(downloadarea,options)
   }
 
   return (
