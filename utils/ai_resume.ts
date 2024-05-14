@@ -51,4 +51,5 @@ export const analyze_resume = async (data) => {
     format_instructions: parser.getFormatInstructions(),
   });
   console.log(response);
+  return response;
 };
