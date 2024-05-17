@@ -48,7 +48,6 @@ export function ComboboxAcd({ setData }) {
   });
 
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
-    console.log("Entered");
     const res = await analyze_data(data);
     setData(res);
   };

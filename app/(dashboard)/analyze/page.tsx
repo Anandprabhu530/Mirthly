@@ -1,47 +1,12 @@
 import { fetchUserData } from "@/app/actions";
 import Navbar from "@/components/Navbar";
 import { analyze_resume } from "@/utils/ai_resume";
+import { redirect } from "next/navigation";
 
 export default async function analyze() {
-  // const data = await fetchUserData();
-  const data = {
-    Fullname: "srty",
-    Email: "ml",
-    Number: "k",
-    Location: "mk",
-    Education: "abc Institute",
-    Degree: "Bachelors of ",
-    Education_From: "jjm",
-    Education_To: "o",
-    Experience_Description: "Worker with C++ Systems.",
-    Experience_Role: "Software Developer",
-    Experience_From: "2019",
-    Experience_To: "2024",
-    Experience_Company: "dwsa",
-    project1: "Streaming Application",
-    Project1_Description: "Built a WEB-rtc application with c++;",
-    project2: "Game Engine",
-    Project2_Description: "Build a game engine with c++;",
-  };
-  const response_data = {
-    Experience_Improvements:
-      "Software Developer with expertise in C++ systems and a proven track record of building high-performance applications.",
-    project_name:
-      "Project names should be concise and descriptive, highlighting the key technologies and outcomes achieved.",
-    project1_Description: [
-      "Developed a real-time video and audio streaming application using WebRTC and C++.",
-      "Implemented low-latency communication protocols and optimized performance for seamless user experience.",
-    ],
-    project2_Description: [
-      "Designed and implemented a custom game engine in C++ from scratch.",
-      "Developed advanced rendering techniques, physics simulations, and AI algorithms for immersive gameplay.",
-    ],
-    additional_recommendations: [
-      "Quantify accomplishments with specific metrics and results whenever possible.",
-      "Highlight relevant skills and technologies used in each project.",
-      "Tailor the resume to each job application, emphasizing the skills and experience most relevant to the role.",
-    ],
-  };
+  const data = await fetchUserData();
+  if (!data) redirect("/");
+  const response_data = await analyze_resume(data);
 
   return (
     <div>

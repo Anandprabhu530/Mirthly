@@ -97,7 +97,6 @@ export function Form_Builder({ setData, data, setsubmitted }) {
   });
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("first");
     setsubmitted(true);
   }
 

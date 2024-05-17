@@ -6,16 +6,24 @@ import { array, z } from "zod";
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
-    Experience_Improvements:
-      z.string()
+    Experience_Improvements: z
+      .string()
       .describe("Give a suitable Expereince description with the given data"),
     project_name: z.string().describe("Give details on how to name projects"),
-    project1_Description: z.
-      array(z.string()
-      .describe("Give a suitable project description in multiple lines for the given project 1")),
-      project2_Description: z.
-      array(z.string()
-      .describe("Give a suitable project description in multiple lines for the given project 2")),
+    project1_Description: z.array(
+      z
+        .string()
+        .describe(
+          "Give a suitable project description in multiple lines for the given project 1"
+        )
+    ),
+    project2_Description: z.array(
+      z
+        .string()
+        .describe(
+          "Give a suitable project description in multiple lines for the given project 2"
+        )
+    ),
     additional_recommendations: z.array(
       z
         .string()
@@ -25,7 +33,6 @@ const parser = StructuredOutputParser.fromZodSchema(
 );
 
 export const analyze_resume = async (data) => {
-  console.log(data);
   const input = `Here is the data
     Previous Role name: ${data.Experience_Role}
     Experience Description:${data.Experience_Description}
@@ -50,6 +57,5 @@ export const analyze_resume = async (data) => {
     question: input,
     format_instructions: parser.getFormatInstructions(),
   });
-  console.log(response);
   return response;
 };
