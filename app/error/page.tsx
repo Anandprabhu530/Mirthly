@@ -1,6 +1,6 @@
 export default function ErrorPage() {
   return (
-    <p className="w-full text-xl h-screen flex items-center justify-center">
+    <p className="w-full text-2xl font-semibold h-screen flex items-center justify-center">
       Sorry, something went wrong
     </p>
   );

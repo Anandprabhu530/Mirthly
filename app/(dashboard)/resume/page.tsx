@@ -65,7 +65,7 @@ const Resume = () => {
           </div>
           <div
             id="pdf_download"
-            className="lg:basis-1/2 p-8 bg-white text-black lg:overflow-auto"
+            className="lg:basis-1/2 lg:p-8 p-4 bg-white text-black lg:overflow-auto"
           >
             <div className=" border-2 border-black h-full p-4">
               <div className="p-2 font-bold text-2xl">
