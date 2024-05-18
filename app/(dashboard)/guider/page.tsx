@@ -2,16 +2,9 @@
 
 import { ComboboxAcd } from "@/components/ComboboxAcd";
 import Navbar from "@/components/Navbar";
+import { solodata_type } from "@/utils/types";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useState } from "react";
-
-interface solodata_type {
-  jobs: string;
-  difficulty_score: string;
-  description: string;
-  steps: [];
-  tasks: [];
-}
 
 export default function Home() {
   const [data, setData] = useState({

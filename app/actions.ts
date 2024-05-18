@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
 import { analyze_resume } from "@/utils/ai_resume";
+import { updateuser_data } from "@/utils/types";
 
 export async function login(formData: FormData) {
   const supabase = createClient();
@@ -13,9 +14,9 @@ export async function login(formData: FormData) {
   };
 
   const { error } = await supabase.auth.signInWithPassword(data);
-
   if (error) {
-    redirect("/error");
+    console.log(error);
+    redirect("/loginerror");
   }
 
   revalidatePath("/", "layout");
@@ -29,22 +30,14 @@ export async function signup(formData: FormData) {
     password: formData.get("password") as string,
   };
   const { data: Test, error: errorsignup } = await supabase.auth.signUp(data);
-  if (errorsignup) {
-    console.log(errorsignup);
-    redirect("/error");
+  if (errorsignup?.status === 422) {
+    redirect("/signuperror");
   }
-  console.log(`Returned Data`);
-  console.log(Test.user.id);
-  console.log();
 
-  const { Insertdata, error } = await supabase
+  const { error } = await supabase
     .from("resume")
-    .insert([{ id: `${Test.user.id}` }])
+    .insert([{ id: `${Test.user?.id}` }])
     .select();
-
-  console.log(`Inserted Data`);
-  console.log(Insertdata);
-  console.log();
 
   if (error) {
     console.log(error);
@@ -53,7 +46,7 @@ export async function signup(formData: FormData) {
   redirect("/guider");
 }
 
-export async function updateuserdata(user_data) {
+export async function updateuserdata(user_data: updateuser_data) {
   const supabase = createClient();
   const {
     data: { user },
@@ -62,7 +55,7 @@ export async function updateuserdata(user_data) {
   const { error } = await supabase
     .from("resume")
     .update({ data: user_data })
-    .eq("id", user.id);
+    .eq("id", user?.id);
 
   console.log("success");
 
@@ -77,12 +70,20 @@ export async function fetchUserData() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const { data: resume, error } = await supabase.from("resume").select("*");
+  if (user) {
+    const { data: resume, error } = await supabase.from("resume").select("*");
 
-  if (resume[0].data === null) {
-    redirect("/resume");
+    if (error) {
+      redirect("/error");
+    }
+
+    if (resume![0].data === null) {
+      redirect("/resume");
+    } else {
+      const res = analyze_resume(resume![0].data);
+      return res;
+    }
   } else {
-    const res = analyze_resume(resume[0].data);
-    return res;
+    redirect("/error");
   }
 }

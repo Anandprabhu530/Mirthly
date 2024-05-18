@@ -3,6 +3,7 @@ import { StructuredOutputParser } from "langchain/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { RunnableSequence } from "@langchain/core/runnables";
 import { array, z } from "zod";
+import { updateuser_data } from "./types";
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -32,7 +33,7 @@ const parser = StructuredOutputParser.fromZodSchema(
   })
 );
 
-export const analyze_resume = async (data) => {
+export const analyze_resume = async (data: updateuser_data) => {
   const input = `Here is the data
     Previous Role name: ${data.Experience_Role}
     Experience Description:${data.Experience_Description}
