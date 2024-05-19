@@ -3,7 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
-import { analyze_resume } from "@/utils/ai_resume";
 import { updateuser_data } from "@/utils/types";
 
 export async function login(formData: FormData) {
@@ -57,8 +56,6 @@ export async function updateuserdata(user_data: updateuser_data) {
     .update({ data: user_data })
     .eq("id", user?.id);
 
-  console.log("success");
-
   if (error) {
     console.log(error);
   }
@@ -71,8 +68,10 @@ export async function fetchUserData() {
   } = await supabase.auth.getUser();
 
   if (user) {
-    const { data: resume, error } = await supabase.from("resume").select("*");
-
+    const { data: resume, error } = await supabase
+      .from("resume")
+      .select("*")
+      .eq("id", user.id);
     if (error) {
       redirect("/error");
     }
@@ -80,8 +79,7 @@ export async function fetchUserData() {
     if (resume![0].data === null) {
       redirect("/resume");
     } else {
-      const res = analyze_resume(resume![0].data);
-      return res;
+      return resume![0].data;
     }
   } else {
     redirect("/error");

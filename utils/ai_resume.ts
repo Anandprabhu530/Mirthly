@@ -2,7 +2,7 @@ import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { StructuredOutputParser } from "langchain/output_parsers";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { RunnableSequence } from "@langchain/core/runnables";
-import { array, z } from "zod";
+import { z } from "zod";
 import { updateuser_data } from "./types";
 
 const parser = StructuredOutputParser.fromZodSchema(
