@@ -1,12 +1,10 @@
 "use client";
 
-import { fetchUserData } from "@/app/actions";
 import { ComboboxAcd } from "@/components/ComboboxAcd";
 import Navbar from "@/components/Navbar";
 import { solodata_type } from "@/utils/types";
 import * as Dialog from "@radix-ui/react-dialog";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
   const [data, setData] = useState({

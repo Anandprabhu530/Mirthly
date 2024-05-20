@@ -1,9 +1,8 @@
 "use client";
-import { fetchUserData, updateuserdata } from "@/app/actions";
+import { updateuserdata } from "@/app/actions";
 import { Form_Builder } from "@/components/Form_Builder";
 import Navbar from "@/components/Navbar";
-import { redirect } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import generatePDF, { Resolution, Options } from "react-to-pdf";
 
 const options: Options = {
