@@ -110,7 +110,7 @@ const Resume = () => {
                       <div className="font-semibold lg:text-lg text-xs">
                         {data.Education}
                       </div>
-                      <div>
+                      <div className="lg:text-lg text-xs">
                         {data.Education_From} - {data.Education_To}
                       </div>
                     </div>
