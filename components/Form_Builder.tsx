@@ -33,8 +33,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { cn } from "@/lib/utils";
-import { ArrowBigLeft, ArrowLeft, ArrowRight } from "lucide-react";
-import { analyze_data, analyze_resume } from "@/utils/ai";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const FormSchema = z.object({
   Fullname: z.string().min(2, {
@@ -70,7 +69,7 @@ const FormSchema = z.object({
   Project2_Description: z.string(),
 });
 
-export function Form_Builder({ setData, data, setsubmitted }) {
+export function Form_Builder({ setData, data, setsubmitted }: any) {
   const [formnumber, setFormnumber] = React.useState(0);
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -100,9 +99,9 @@ export function Form_Builder({ setData, data, setsubmitted }) {
     setsubmitted(true);
   }
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     event.preventDefault();
-    setData((prev) => ({
+    setData((prev: any) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
@@ -521,6 +520,7 @@ export function Form_Builder({ setData, data, setsubmitted }) {
 
               <Button
                 type="submit"
+                //@ts-ignore
                 onClick={onSubmit}
                 className={cn({ hidden: formnumber !== 3 })}
               >

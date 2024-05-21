@@ -76,23 +76,23 @@ const Resume = () => {
                   <div>{data.Fullname}</div>
                 )}
               </div>
-              <div className="flex gap-2 lg:gap-4 pl-2 lg:text-md text-xs">
+              <div className="flex gap-2 lg:gap-4 pl-2">
                 {data.Email.length === 0 ? (
                   <div>Your Email Id</div>
                 ) : (
-                  <div className="lg:text-md text-xs">{data.Email}</div>
+                  <div className="lg:text-lg text-xs">{data.Email}</div>
                 )}
                 <div>|</div>
                 {data.Number.length === 0 ? (
                   <div>Your Mobile Number</div>
                 ) : (
-                  <div className="lg:text-md text-xs">{data.Number}</div>
+                  <div className="lg:text-lg text-xs">{data.Number}</div>
                 )}
                 <div>|</div>
                 {data.Location.length !== 0 ? (
                   <div>
-                    <div className="flex gap-4 lg:text-md text-xs">
-                      <div className="lg:text-md text-xs">{data.Location}</div>
+                    <div className="flex gap-4">
+                      <div className="lg:text-lg text-xs">{data.Location}</div>
                     </div>
                   </div>
                 ) : (
