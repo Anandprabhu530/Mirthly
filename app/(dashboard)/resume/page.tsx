@@ -63,55 +63,60 @@ const Resume = () => {
               />
             </div>
           </div>
+
           <div
             id="pdf_download"
             className="lg:basis-1/2 lg:p-8 p-4 bg-white text-black lg:overflow-auto"
           >
-            <div className=" border-2 border-black h-full p-4">
-              <div className="p-2 font-bold text-2xl">
+            <div className="border-2 border-black h-full p-2 lg:p-4">
+              <div className="p-2 font-bold lg:text-2xl">
                 {data.Fullname.length === 0 ? (
                   <div>Your Name</div>
                 ) : (
                   <div>{data.Fullname}</div>
                 )}
               </div>
-              <div className="flex gap-4 pl-2">
+              <div className="flex gap-2 lg:gap-4 pl-2 lg:text-md text-xs">
                 {data.Email.length === 0 ? (
                   <div>Your Email Id</div>
                 ) : (
-                  <div>{data.Email}</div>
+                  <div className="lg:text-md text-xs">{data.Email}</div>
                 )}
                 <div>|</div>
                 {data.Number.length === 0 ? (
                   <div>Your Mobile Number</div>
                 ) : (
-                  <div>{data.Number}</div>
+                  <div className="lg:text-md text-xs">{data.Number}</div>
                 )}
                 <div>|</div>
                 {data.Location.length !== 0 ? (
                   <div>
-                    <div className="flex gap-4">
-                      <div>{data.Location}</div>
+                    <div className="flex gap-4 lg:text-md text-xs">
+                      <div className="lg:text-md text-xs">{data.Location}</div>
                     </div>
                   </div>
                 ) : (
                   <div>Your Location</div>
                 )}
               </div>
-              <div className="border-b border-black pb-2 mx-2"></div>
+              <div className="border-b border-black pb-2 mx-2 lg:text-md text-xs"></div>
               {data.Education.length != 0 ? (
                 <div>
-                  <div className="p-2 text-2xl font-semibold">Education</div>
-                  <div className="px-2">
+                  <div className="p-2 lg:text-2xl font-semibold lg:text-md text-md">
+                    Education
+                  </div>
+                  <div className="px-2 lg:text-md text-xs">
                     <div className="flex w-full justify-between">
-                      <div className="font-semibold text-lg">
+                      <div className="font-semibold lg:text-lg text-xs">
                         {data.Education}
                       </div>
                       <div>
                         {data.Education_From} - {data.Education_To}
                       </div>
                     </div>
-                    <div className="font-semibold text-lg">{data.Degree}</div>
+                    <div className="font-semibold lg:text-lg text-xs">
+                      {data.Degree}
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -122,20 +127,24 @@ const Resume = () => {
               <div className="border-b border-black pb-2 mx-2"></div>
               {data.Experience_Company.length != 0 && (
                 <div>
-                  <div className="p-2 text-2xl font-semibold">Experience</div>
+                  <div className="p-2 lg:text-2xl font-semibold text-md">
+                    Experience
+                  </div>
                   <div className="px-2">
                     <div className="flex w-full justify-between">
-                      <div className="font-semibold text-lg">
+                      <div className="font-semibold lg:text-lg text-xs">
                         {data.Experience_Company}
                       </div>
-                      <div>
+                      <div className="lg:text-lg text-xs">
                         {data.Experience_From} - {data.Experience_To}
                       </div>
                     </div>
-                    <div className="text-lg font-semibold">
+                    <div className="lg:text-lg text-xs font-semibold">
                       {data.Experience_Role}
                     </div>
-                    <div>{data.Experience_Description}</div>
+                    <div className="lg:text-lg text-xs">
+                      {data.Experience_Description}
+                    </div>
                   </div>
                   <div className="border-b border-black pb-2 mx-2"></div>
                 </div>
@@ -143,11 +152,11 @@ const Resume = () => {
 
               {data.project1.length === 0 ? (
                 <div>
-                  <div className="p-2 text-2xl font-semibold pb-20">
+                  <div className="p-2 lg:text-2xl text-xs font-semibold pb-20">
                     Projects
-                    <div className="text-xl pt-4 font-semibold pb-20">
+                    <div className="lg:text-xl text-xs pt-4 font-semibold pb-20">
                       Poject 1
-                      <div className="font-normal pt-2 text-xl">
+                      <div className="font-normal pt-2 lg:text-xl text-xs">
                         Project Description
                       </div>
                     </div>
@@ -162,20 +171,26 @@ const Resume = () => {
               ) : (
                 <div>
                   <div>
-                    <div className="p-2 text-2xl font-semibold">Projects</div>
+                    <div className="p-2 font-semibold lg:text-2xl">
+                      Projects
+                    </div>
                     <div className="pl-2">
-                      <div className="text-lg font-semibold pb-1">
+                      <div className="lg:text-lg text-xs font-semibold pb-1">
                         {data.project1}
                       </div>
-                      <div>{data.Project1_Description}</div>
+                      <div className="lg:text-lg text-xs">
+                        {data.Project1_Description}
+                      </div>
                     </div>
                   </div>
                   <div>
                     <div className="pl-2 pt-4">
-                      <div className="text-lg font-semibold pb-1">
+                      <div className="lg:text-lg text-xs font-semibold pb-1">
                         {data.project2}
                       </div>
-                      <div>{data.Project2_Description}</div>
+                      <div className="lg:text-lg text-xs">
+                        {data.Project2_Description}
+                      </div>
                     </div>
                   </div>
                 </div>

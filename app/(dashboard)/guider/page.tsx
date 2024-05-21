@@ -31,7 +31,7 @@ export default function Home() {
               Your Carrier Starts Here
             </div>
             <div className="lg:p-8 w-full">
-              <ComboboxAcd setData={setData} />
+              <ComboboxAcd setData={setData} setLoading={setLoading} />
             </div>
           </div>
         </div>
@@ -68,26 +68,27 @@ export default function Home() {
                           </div>
                         </Dialog.Trigger>
                         <Dialog.Portal>
-                          <Dialog.Overlay className="fixed inset-0 bg-black/50" />
-                          <Dialog.Content className="fixed top-1/2 left-1/2 bg-black -translate-x-1/2 -translate-y-1/2 p-4 lg:p-10 rounded-md w-[80%] overflow-auto shadow-md border-2 border-white">
+                          <Dialog.Overlay className="fixed inset-0 bg-black/70" />
+                          <Dialog.Content className="fixed top-1/2 left-1/2 bg-black -translate-x-1/2 -translate-y-1/2 p-4 lg:p-10 rounded-md w-[80%] shadow-md border-2 border-white">
                             <div>
                               <div className="pb-2 text-xl font-semibold">
                                 What is {solodata.jobs}
                               </div>
-                              <div>{solodata.description}</div>
+                              <div className="pb-4">{solodata.description}</div>
                             </div>
-                            <div className="pt-4"></div>
-                            <div className="pb-2 text-xl font-semibold">
-                              Day to day work as a {solodata.jobs}
+                            <div className="md:contents hidden">
+                              <div className="pb-2 text-xl font-semibold ">
+                                Day to day work as a {solodata.jobs}
+                              </div>
+                              {solodata.tasks &&
+                                solodata.tasks.map((day_to_day_task, index) => {
+                                  return (
+                                    <div key={index}>
+                                      {index + 1} . {day_to_day_task}
+                                    </div>
+                                  );
+                                })}
                             </div>
-                            {solodata.tasks &&
-                              solodata.tasks.map((day_to_day_task, index) => {
-                                return (
-                                  <div key={index}>
-                                    {index + 1} . {day_to_day_task}
-                                  </div>
-                                );
-                              })}
                             <div className="pt-4">
                               <div className="pb-2 text-xl font-semibold">
                                 Steps to become a {solodata.jobs}
